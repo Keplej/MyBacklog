@@ -19,6 +19,7 @@ import CurrentlyPlaying from '../CurrentlyPlaying/CurrentlyPlaying';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Completed from '../Completed/Completed';
 
 import './App.css';
 
@@ -38,13 +39,13 @@ function App() {
           <Redirect exact from="/" to="/home" />
 
           {/* Visiting localhost:3000/about will show the about page. */}
-          <Route
+          <ProtectedRoute
             // shows AboutPage at all times (logged in or not)
             exact
             path="/backlog"
           >
             <Backlog />
-          </Route>
+          </ProtectedRoute>
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
@@ -66,6 +67,15 @@ function App() {
             <CurrentlyPlaying />
           </ProtectedRoute>
 
+
+          <ProtectedRoute
+          
+          exact
+          path='/completed'
+          >
+            <Completed />
+
+          </ProtectedRoute>
           {/* When a value is supplied for the authRedirect prop the user will
             be redirected to the path supplied when logged in, otherwise they will
             be taken to the component and path supplied. */}

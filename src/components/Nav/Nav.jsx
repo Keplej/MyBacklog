@@ -32,13 +32,13 @@ function Nav() {
             <Link className="navLink" to="/current">
               Currently Playing
             </Link>
+            <Link className="navLink" to="/backlog">
+            Backlog
+            </Link>
+            {/* Set up a new page for completed page */}
             <LogOutButton className="navLink" />
           </>
         )}
-
-        <Link className="navLink" to="/about">
-          About
-        </Link>
       </div>
     </div>
   );

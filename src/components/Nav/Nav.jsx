@@ -33,7 +33,10 @@ function Nav() {
               Currently Playing
             </Link>
             <Link className="navLink" to="/backlog">
-            Backlog
+              Backlog
+            </Link>
+            <Link className="navLink" to="/completed">
+              Completed
             </Link>
             {/* Set up a new page for completed page */}
             <LogOutButton className="navLink" />

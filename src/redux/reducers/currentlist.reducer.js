@@ -1,4 +1,4 @@
-const listReducer = (state = [], action) => {
+const currentlistReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_LIST':
             return action.payload;
@@ -7,4 +7,4 @@ const listReducer = (state = [], action) => {
     }
 }
 
-export default listReducer;
+export default currentlistReducer;

@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, CardContent, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { Card, CardContent, Typography } from '@material-ui/core';
 
 // This is one of our simplest components
-// It doesn't have local state
+// It doesn't have local state,
 // It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is
-
+// or even care what the redux state is'
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -25,38 +24,39 @@ const useStyles = makeStyles({
   },
 });
 
-function CurrentlyPlaying() {
+
+
+function Backlog() {
 
   const dispatch = useDispatch();
-  const list = useSelector(store => store.currentlistReducer.data);
+  const list = useSelector(store => store.backloglistReducer.data);
   const user = useSelector(store => store.user);
-  
   const classes = useStyles();
 
   useEffect(() => {
-    dispatch({type: 'GET_GAMES'});
+    dispatch({type: 'GET_BACKLOG_GAMES'})
   }, []);
 
   return (
     <div className="container">
-      <h2>Currently Playing</h2>
-      <p>Testing to all items from db</p>
-      <section>
-      {list ? <Card className={classes.root}>
-        {list.map((game) => {
+        <h2>Your Backlog</h2>
+        <p>Testing to all items from db</p>
+        <section>
+        {list ? <Card className={classes.root}>
+        {list.map((backlog) => {
           return(
-            <CardContent key={game.id}>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>{game.name}</Typography>
-              <Typography variant="body2" component="p">{game.description}</Typography>
-              {(game && game.user_id === user.id)}
+            <CardContent key={backlog.id}>
+              <Typography className={classes.title} color="textSecondary" gutterBottom>{backlog.name}</Typography>
+              <Typography variant="body2" component="p">{backlog.description}</Typography>
+              {(backlog && backlog.user_id === user.id)}
           
           </CardContent>
           );
         })}
       </Card> : ''}
-      </section>
+        </section>
     </div>
   );
 }
 
-export default CurrentlyPlaying;
+export default Backlog;

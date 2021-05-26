@@ -13,7 +13,7 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import AboutPage from '../AboutPage/AboutPage';
+import Backlog from '../Backlog/Backlog';
 import UserPage from '../UserPage/UserPage';
 import CurrentlyPlaying from '../CurrentlyPlaying/CurrentlyPlaying';
 import LandingPage from '../LandingPage/LandingPage';
@@ -41,9 +41,9 @@ function App() {
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
-            path="/about"
+            path="/backlog"
           >
-            <AboutPage />
+            <Backlog />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.

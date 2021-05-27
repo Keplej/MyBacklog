@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Completed from '../Completed/Completed';
+import AddGame from '../AddGame/AddGame';
 
 import './App.css';
 
@@ -75,6 +76,13 @@ function App() {
           >
             <Completed />
 
+          </ProtectedRoute>
+
+          <ProtectedRoute
+          exact
+          path="/addgame"
+          >
+            <AddGame />
           </ProtectedRoute>
           {/* When a value is supplied for the authRedirect prop the user will
             be redirected to the path supplied when logged in, otherwise they will

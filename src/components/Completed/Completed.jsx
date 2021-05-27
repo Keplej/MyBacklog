@@ -34,7 +34,7 @@ function Completed() {
 
     return(
         <div className="container">
-            <h2>Currently Playing</h2>
+            <h2>Completed Games</h2>
             <p>Testing to all items from db</p>
             <section>
             {list ? <Card className={classes.root}>

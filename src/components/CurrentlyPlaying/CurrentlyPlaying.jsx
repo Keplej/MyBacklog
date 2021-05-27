@@ -55,6 +55,9 @@ function CurrentlyPlaying() {
         })}
       </Card> : ''}
       </section>
+      <button>Move to Completed</button>
+      <br />
+      <button>Delete</button>
     </div>
   );
 }

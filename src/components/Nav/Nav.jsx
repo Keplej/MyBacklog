@@ -38,6 +38,9 @@ function Nav() {
             <Link className="navLink" to="/completed">
               Completed
             </Link>
+            <Link className="navLink" to="/addgame">
+              Add Game
+            </Link>
             {/* Set up a new page for completed page */}
             <LogOutButton className="navLink" />
           </>

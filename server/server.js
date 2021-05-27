@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const currentRouter = require('./routes/current.router');
 const backlogRouter = require('./routes/backlog.router');
 const completedRouter = require('./routes/completed.router');
+const addgameRouter = require('./routes/addgame.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/current', currentRouter);
 app.use('/api/backlog', backlogRouter);
 app.use('/api/completed', completedRouter);
+app.use('/api/addgame', addgameRouter);
 
 // Serve static files
 app.use(express.static('build'));

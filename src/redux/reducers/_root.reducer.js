@@ -4,6 +4,7 @@ import user from './user.reducer';
 import currentlistReducer from './currentlist.reducer';
 import backloglistReducer from './backloglist.reducer';
 import completedlistReducer from './completedlist.reducer';
+import addGameReducer from './addGame.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   currentlistReducer,
   backloglistReducer,
   completedlistReducer,
+  addGameReducer,
 });
 
 export default rootReducer;

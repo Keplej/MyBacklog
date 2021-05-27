@@ -1,12 +1,18 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
  * GET route template
  */
+
+//  SELECT * FROM "game" WHERE "game".status = 1;
 router.get('/', (req, res) => {
-    let queryText = `SELECT * FROM "game";`
+    let queryText = `SELECT "game".id, "game".name, "game".description, "game".image_url FROM "game"
+    JOIN "game_status" ON "game".status = "game_status".id 
+    WHERE "game".user_id = ${req.user.id}
+    AND "game".status = 1;`
     pool.query(queryText)
     .then((result) => {
         res.send(result.rows);
@@ -15,6 +21,7 @@ router.get('/', (req, res) => {
         res.sendStatus(500);    
     })
 });
+
 
 /**
  * POST route template

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Typography } from '@material-ui/core';
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -33,7 +33,9 @@ function Backlog() {
   const user = useSelector(store => store.user);
   const classes = useStyles();
 
-  
+  function handleDelete(id) {
+    dispatch({type: 'DELETE_BACKLOG', payload: id})
+  }
 
 
   useEffect(() => {
@@ -45,19 +47,19 @@ function Backlog() {
         <h2>Your Backlog</h2>
         <p>Testing to all items from db</p>
         <section>
-        {list ? <Card className={classes.root}>
-        {list.map((backlog) => {
-          return(
+        {list ? 
+        <Card className={classes.root}>
+        {list.map((backlog) => 
+          
             <CardContent key={backlog.id}>
               <Typography className={classes.title} color="textSecondary" gutterBottom>{backlog.name}</Typography>
               <Typography variant="body2" component="p">{backlog.description}</Typography>
-              {(backlog && backlog.user_id === user.id)}
-          
+              <Button variant="contained" color="secondary" 
+              value={backlog.id} onClick={(event) => handleDelete(backlog.id)}>Delete</Button>
           </CardContent>
-          );
-        })}
+        )}
       </Card> : ''}
-        </section>
+      </section>
     </div>
   );
 }

@@ -12,21 +12,22 @@ function* fetchList() {
     }
 }
 
-// function* deleteCurrentGame(action) {
-//     try {
-//         let id = action.payload;
-//         yield axios.delete(`/api/current/${id}`);
-//         yield put({type: 'GET_GAMES'});
-//     } catch (error) {
-//         alert(`Error in delete`);
-//         console.log('Error getting list', error);
-//     }
-// }
+function* deleteCurrentGame(action) {
+    try {
+        let id = action.payload;
+        yield axios.delete(`/api/current/${id}`);
+        yield put({type: 'GET_GAMES'});
+    } catch (error) {
+        alert(`Error in delete`);
+        console.log('Error getting list', error);
+    }
+}
 
 
 function* fetchSaga() {
     yield takeLatest('GET_GAMES', fetchList);
-    // yield takeLatest('DELETE_CURRENT', deleteCurrentGame);
+    yield takeLatest('DELETE_CURRENT', deleteCurrentGame);
+    
 }
 
 export default fetchSaga;

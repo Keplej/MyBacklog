@@ -13,8 +13,21 @@ function* backlogList() {
     }
 }
 
+function* deleteBacklogGame(action) {
+    try {
+        let id = action.payload;
+        yield axios.delete(`/api/current/${id}`);
+        yield put({type: 'GET_BACKLOG_GAMES'});
+    } catch (error) {
+        alert(`Error in delete`);
+        console.log('Error getting list', error);
+    }
+}
+
+
 function* fetchBacklogSaga() {
     yield takeLatest('GET_BACKLOG_GAMES', backlogList);
+    yield takeLatest('DELETE_BACKLOG', deleteBacklogGame);
 }
 
 export default fetchBacklogSaga;

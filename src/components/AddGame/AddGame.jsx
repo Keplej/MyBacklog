@@ -11,20 +11,21 @@ function AddGame() {
     // const [url, setUrl] = useState('');
     const [status, setStatus] = useState(1);
     
-    const user = useSelector(store => store.user);
-    const completed = useSelector(store => store.completedlistReducer);
+    // const user = useSelector(store => store.user);
+    
+    const addGame = useSelector(store => store.addGameReducer);
 
-    const addingGame = {
-        name: name,
-        description: description,
-        // url: url,
-        status: status,
-        user_id: user.id
-    }
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch({type: 'ADDING_NEW_GAME', payload: addingGame})
+        const addingGame = {
+            name: name,
+            description: description,
+            // url: url,
+            status: status,
+        }
+        dispatch({type: 'ADDING_NEW_GAME', payload: addingGame});
     }
 
 
@@ -48,11 +49,14 @@ function AddGame() {
                 <br />
                 <select 
                 placeholder="Select Status"
+                value={status}
                 onChange={(event) => setStatus(event.target.value)}
                 >
-                    {completed.map((game) => {
+                    {addGame.map((game) => {
                         return (
-                            <option key={game.id} value={game.id}>{game.name}</option>
+                            <option 
+                            key={game.id} value={game.id}>{game.name}
+                            </option>
                         )
                     })}
                 </select>

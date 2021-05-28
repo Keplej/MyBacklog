@@ -33,6 +33,9 @@ function Backlog() {
   const user = useSelector(store => store.user);
   const classes = useStyles();
 
+  
+
+
   useEffect(() => {
     dispatch({type: 'GET_BACKLOG_GAMES'})
   }, []);

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 // This is one of our simplest components
@@ -33,31 +33,37 @@ function CurrentlyPlaying() {
   
   const classes = useStyles();
 
+  function handleDelete(id) {
+    dispatch({type: 'DELETE_CURRENT', payload: id})
+  }
+
   useEffect(() => {
     dispatch({type: 'GET_GAMES'});
   }, []);
+
+
 
   return (
     <div className="container">
       <h2>Currently Playing</h2>
       <p>Testing to all items from db</p>
       <section>
-      {list ? <Card className={classes.root}>
-        {list.map((game) => {
-          return(
+      {list ? 
+      <Card className={classes.root}>
+        {list.map((game) => 
+          // return(
             <CardContent key={game.id}>
               <Typography className={classes.title} color="textSecondary" gutterBottom>{game.name}</Typography>
               <Typography variant="body2" component="p">{game.description}</Typography>
-              {(game && game.user_id === user.id)}
-          
+              {/* {(game && game.user_id === user.id) ?  */}
+              <Button variant="contained" color="secondary" 
+              value={game.id} onClick={(event) => handleDelete(game.id)}>Delete</Button>
+              {/* : ''} */}
           </CardContent>
-          );
-        })}
+          // );
+        )}
       </Card> : ''}
       </section>
-      <button>Move to Completed</button>
-      <br />
-      <button>Delete</button>
     </div>
   );
 }

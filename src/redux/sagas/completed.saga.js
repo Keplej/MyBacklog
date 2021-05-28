@@ -13,6 +13,8 @@ function* completedList() {
     }
 }
 
+
+
 function* completedSaga() {
     yield takeLatest('GET_COMPLETED', completedList);
 }

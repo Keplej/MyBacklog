@@ -13,10 +13,20 @@ function* completedList() {
     }
 }
 
-
+function* deleteCompletedGame(action) {
+    try {
+        let id = action.payload;
+        yield axios.delete(`/api/completed/${id}`);
+        yield put({type: 'GET_COMPLETED'});
+    } catch (error) {
+        alert(`Error in delete`);
+        console.log('Error getting list', error);
+    }
+}
 
 function* completedSaga() {
     yield takeLatest('GET_COMPLETED', completedList);
+    yield takeLatest('DELETE_COMPLETED', deleteCompletedGame);
 }
 
 export default completedSaga;

@@ -16,7 +16,7 @@ function* backlogList() {
 function* deleteBacklogGame(action) {
     try {
         let id = action.payload;
-        yield axios.delete(`/api/current/${id}`);
+        yield axios.delete(`/api/backlog/${id}`);
         yield put({type: 'GET_BACKLOG_GAMES'});
     } catch (error) {
         alert(`Error in delete`);

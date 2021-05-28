@@ -14,6 +14,10 @@ const backlogRouter = require('./routes/backlog.router');
 const completedRouter = require('./routes/completed.router');
 const addgameRouter = require('./routes/addgame.router');
 
+//For testing status
+const statusRouter = require('./routes/status.router');
+
+
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,6 +35,8 @@ app.use('/api/current', currentRouter);
 app.use('/api/backlog', backlogRouter);
 app.use('/api/completed', completedRouter);
 app.use('/api/addgame', addgameRouter);
+// test for status 
+app.use('/api/status', statusRouter);
 
 // Serve static files
 app.use(express.static('build'));

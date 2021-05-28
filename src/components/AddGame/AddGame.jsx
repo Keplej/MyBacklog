@@ -1,5 +1,5 @@
-import { TextField } from '@material-ui/core';
-import React, { useState } from 'react';
+import { Button, TextField } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function AddGame() {
@@ -9,12 +9,13 @@ function AddGame() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     // const [url, setUrl] = useState('');
-    const [status, setStatus] = useState(1);
+    const [status, setStatus] = useState(0);
     
-    // const user = useSelector(store => store.user);
+    // const status = useSelector((store) => store.status);
     
     const addGame = useSelector(store => store.addGameReducer);
 
+    const getStatus = useSelector((store) => store.statuslistReducer)
 
 
     const handleSubmit = (event) => {
@@ -28,18 +29,22 @@ function AddGame() {
         dispatch({type: 'ADDING_NEW_GAME', payload: addingGame});
     }
 
+    useEffect(() => {
+        dispatch({type: 'FETCH_STATUS'})
+    }, [])
+
 
     return(
         <form onSubmit={handleSubmit}>
             <h3>Game Title:</h3>
-                <input 
+                <TextField 
                 type="text"
                 placeholder="Game Title"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
                 />
             <h3>Game Description:</h3>
-                <input 
+                <textarea 
                 type="text"
                 placeholder="Description"
                 value={description}
@@ -48,11 +53,11 @@ function AddGame() {
                 
                 <br />
                 <select 
-                placeholder="Select Status"
-                value={status}
+                value={status.id}
+                name='status'
                 onChange={(event) => setStatus(event.target.value)}
                 >
-                    {addGame.map((game) => {
+                    {getStatus.map((game) => {
                         return (
                             <option 
                             key={game.id} value={game.id}>{game.name}
@@ -61,7 +66,7 @@ function AddGame() {
                     })}
                 </select>
                 <br />
-            <button type="submit">Submit</button>
+            <Button variant="contained" color="secondary" type="submit">Submit</Button>
         </form>
     )
 }

@@ -58,6 +58,7 @@ function CurrentlyPlaying() {
               {/* {(game && game.user_id === user.id) ?  */}
               <Button variant="contained" color="secondary" 
               value={game.id} onClick={(event) => handleDelete(game.id)}>Delete</Button>
+              <Button>Edit</Button>
               {/* : ''} */}
           </CardContent>
           // );

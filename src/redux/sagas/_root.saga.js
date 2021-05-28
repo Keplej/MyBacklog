@@ -5,7 +5,9 @@ import userSaga from './user.saga';
 import fetchSaga from './currentlist.saga';
 import fetchBacklogSaga from './backlog.saga';
 import completedSaga from './completed.saga';
-// import deleteGameSaga from './delete.saga';
+import addGameSaga from './AddGame.saga';
+import statusSaga from './status.saga';
+
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -22,6 +24,7 @@ export default function* rootSaga() {
     fetchSaga(),
     fetchBacklogSaga(),
     completedSaga(),
-    // deleteGameSaga(),
+    addGameSaga(),
+    statusSaga(),
   ]);
 }

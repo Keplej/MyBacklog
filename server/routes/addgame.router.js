@@ -27,17 +27,18 @@ router.post('/', (req, res) => {
   const newGame = req.body;
   const user = req.user.id;
   
-  let queryText = `INSERT INTO "game" ("name", "description", "image_url", "status", "user_id") VALUES ($1, $2, $3, $4, $5);`;
-  pool.query(queryText, [newGame.name, newGame.description, newGame.url, newGame.status, user])
+  let queryText = `INSERT INTO "game" ("name", "description", "image_url", "status", "user_id") VALUES ($1, $2, $3, $4, $5)
+  RETURNING "id";`;
+  pool.query(queryText, [newGame.name, newGame.description, newGame.url, newGame.status, req.user.id])
   .then((result) => {
       res.sendStatus(result.rows[0].id);
 
       const createdGameId = result.rows[0].id
 
-      const insertGameQuery = 
-      `INSERT INTO "game_status" ("name") 
-       VALUES ($1);
-      `
+      // const insertGameQuery = 
+      // `INSERT INTO "game_status" ("name") 
+      //  VALUES ($1);
+      // `
     pool.query(insertGameQuery, [createdGameId, req.body.name])
     .then(result => {
       res.sendStatus(201);

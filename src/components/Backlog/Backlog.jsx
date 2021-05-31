@@ -56,6 +56,8 @@ function Backlog() {
               <Typography variant="body2" component="p">{backlog.description}</Typography>
               <Button variant="contained" color="secondary" 
               value={backlog.id} onClick={(event) => handleDelete(backlog.id)}>Delete</Button>
+              <Button color="primary">Currently Playing</Button>
+              <Button>Edit</Button>
           </CardContent>
         )}
       </Card> : ''}

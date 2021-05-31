@@ -19,6 +19,10 @@ router.get('/', (req, res) => {
     })
 });
 
+// router.put('/:id/', (req,res) => {
+//     const queryText = `SELECT "game".id, "game".name, "game".description`
+// })
+
 /**
  * POST route template
  */

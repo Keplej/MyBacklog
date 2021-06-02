@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router";
+import { useHistory, useParams } from "react-router-dom";
 
 
 function Detail() {
 
-    const list = useSelector(store => store.backloglistReducer);
+    const list = useSelector(store => store.backlogDetail);
     const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');

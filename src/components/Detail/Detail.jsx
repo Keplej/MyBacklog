@@ -63,10 +63,10 @@ function Detail() {
         dispatch({type: 'FETCH_BACKLOG_DETAIL', payload: id})
     }, [])
 
-    useEffect(() => {
-        console.log('In ueseEffect param:', id);
-        dispatch({type: 'FETCH_COMPLETED_DETAIL', payload: id})
-    }, [])
+    // useEffect(() => {
+    //     console.log('In ueseEffect param:', id);
+    //     dispatch({type: 'FETCH_COMPLETED_DETAIL', payload: id})
+    // }, [])
 
 
     return (

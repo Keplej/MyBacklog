@@ -24,10 +24,6 @@ function* deleteBacklogGame(action) {
     }
 }
 
-
-
-
-
 function* fetchBacklogSaga() {
     yield takeEvery('FETCH_BACKLOG_GAMES', backlogList);
     yield takeEvery('DELETE_BACKLOG', deleteBacklogGame);

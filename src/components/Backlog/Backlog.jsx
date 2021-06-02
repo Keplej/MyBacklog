@@ -8,22 +8,23 @@ import { useHistory } from 'react-router-dom';
 // It doesn't have local state,
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is'
-// const useStyles = makeStyles({
-//   root: {
-//     minWidth: 275,
-//   },
-//   bullet: {
-//     display: 'inline-block',
-//     margin: '0 2px',
-//     transform: 'scale(0.8)',
-//   },
-//   title: {
-//     fontSize: 14,
-//   },
-//   pos: {
-//     marginBottom: 12,
-//   },
-// });
+
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
 
 
 
@@ -32,7 +33,7 @@ function Backlog() {
   const dispatch = useDispatch();
   const list = useSelector(store => store.backloglistReducer);
   // const user = useSelector(store => store.user);
-  // const classes = useStyles();
+  const classes = useStyles();
   const history = useHistory();
 
 
@@ -74,16 +75,16 @@ function Backlog() {
     //   </section>
     // </div>
 
-    <div>
+    <div className="container">
       <form>
         {list.map((lists, i) => {
           return(
-          <li key={i}>
-            <ul>{lists.name}</ul>
-            <ul>{lists.description}</ul>
-            <button onClick={(event) => viewDetails(event, lists)}>View</button>
-            <button value={lists.id} onClick={(event) => handleDelete(lists.id)}>Delete</button>
-          </li>
+          <Card className={classes.root} key={i}>
+            <Typography className={classes.title} color="textSecondary" gutterBottom>{lists.name}</Typography>
+            <Typography variant="body2" component="p">{lists.description}</Typography>
+            <Button variant="contained" color="secondary" onClick={(event) => viewDetails(event, lists)}>View</Button>
+            <Button color="primary" value={lists.id} onClick={(event) => handleDelete(lists.id)}>Delete</Button>
+          </Card>
           )
         })}
       </form>

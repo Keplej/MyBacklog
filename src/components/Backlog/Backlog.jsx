@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Card, CardContent, Typography } from '@material-ui/core';
+import { useHistory } from 'react-router';
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -32,6 +33,13 @@ function Backlog() {
   const list = useSelector(store => store.backloglistReducer);
   // const user = useSelector(store => store.user);
   // const classes = useStyles();
+  const history = useHistory();
+
+
+  const viewDetails = (event, lists) => {
+    console.log('Clicked on detail', lists);
+    history.push(`/detail/${lists.id}`);
+  }
 
   function handleDelete(id) {
     dispatch({type: 'DELETE_BACKLOG', payload: id})
@@ -68,12 +76,13 @@ function Backlog() {
 
     <div>
       <form>
-        {list.map(lists => {
+        {list.map((lists, i) => {
           return(
-          <li key={lists.id}>
+          <li key={i}>
             <ul>{lists.name}</ul>
             <ul>{lists.description}</ul>
-            <button>edit</button>
+            <button onClick={(event) => viewDetails(event, lists)}>edit</button>
+            <button value={lists.id} onClick={(event) => handleDelete(lists.id)}>Delete</button>
           </li>
           )
         })}

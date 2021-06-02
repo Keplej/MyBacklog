@@ -19,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function Detail() {
+function CompletedDetail() {
 
-    const list = useSelector(store => store.backlogDetail);
+    const list = useSelector(store => store.completedDetailReducer);
     const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -40,28 +40,21 @@ function Detail() {
     }
 
     const saveEdit = () => {
-        const updatedBacklog = {
+        const updatedCompleted = {
             id: list.id,
             name: name,
             description: description,
         }
-        console.log('updated backlog detail:', updatedBacklog);
-        dispatch({type: 'UPDATE_BACKLOG', payload: updatedBacklog});
-        // dispatch({type: '', payload: updatedBacklog});
+        console.log('updated backlog detail:', updatedCompleted);
+        dispatch({type: 'UPDATE_COMPLETED', payload: updatedCompleted});
+ 
 
         setEditMode(false)
-        history.push('/backlog');
+        history.push('/completed');
     }
 
     const {id} = useParams(); 
     
-    
-
-
-    useEffect(() => {
-        console.log('In ueseEffect param:', id);
-        dispatch({type: 'FETCH_BACKLOG_DETAIL', payload: id})
-    }, [])
 
     useEffect(() => {
         console.log('In ueseEffect param:', id);
@@ -122,4 +115,4 @@ function Detail() {
     )
 }
 
-export default Detail;
+export default CompletedDetail;

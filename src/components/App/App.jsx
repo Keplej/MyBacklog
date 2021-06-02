@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import Completed from '../Completed/Completed';
 import AddGame from '../AddGame/AddGame';
 import Detail from '../Detail/Detail';
+import CompletedDetail from '../CompletedDetail/CompletedDetail';
 
 import './App.css';
 
@@ -79,13 +80,22 @@ function App() {
 
           </ProtectedRoute>
 
-
+{/* Details for these routes */}
           <ProtectedRoute
           
           exact
           path='/detail/:id'
           >
             <Detail />
+
+          </ProtectedRoute>
+
+          <ProtectedRoute
+          
+          exact
+          path='/completeddetail/:id'
+          >
+            <CompletedDetail />
 
           </ProtectedRoute>
 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Card, CardContent, Typography } from '@material-ui/core';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -81,7 +81,7 @@ function Backlog() {
           <li key={i}>
             <ul>{lists.name}</ul>
             <ul>{lists.description}</ul>
-            <button onClick={(event) => viewDetails(event, lists)}>edit</button>
+            <button onClick={(event) => viewDetails(event, lists)}>View</button>
             <button value={lists.id} onClick={(event) => handleDelete(lists.id)}>Delete</button>
           </li>
           )

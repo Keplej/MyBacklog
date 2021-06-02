@@ -13,6 +13,7 @@ const currentRouter = require('./routes/current.router');
 const backlogRouter = require('./routes/backlog.router');
 const completedRouter = require('./routes/completed.router');
 const addgameRouter = require('./routes/addgame.router');
+const detailRouter = require('./routes/detail.router');
 
 //For testing status
 const statusRouter = require('./routes/status.router');
@@ -35,6 +36,8 @@ app.use('/api/current', currentRouter);
 app.use('/api/backlog', backlogRouter);
 app.use('/api/completed', completedRouter);
 app.use('/api/addgame', addgameRouter);
+app.use('/api/detail', detailRouter);
+
 // test for status 
 app.use('/api/status', statusRouter);
 

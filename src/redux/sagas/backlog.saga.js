@@ -1,4 +1,4 @@
-import { takeLatest, put } from "@redux-saga/core/effects";
+import { takeEvery, takeLatest, put } from "@redux-saga/core/effects";
 import axios from "axios";
 
 
@@ -6,7 +6,7 @@ function* backlogList() {
     try {
         // Come back and fix '/api/shelf'
         const response = yield axios.get('/api/backlog');
-        yield put ({type: 'SET_BACKLOG', payload: response})
+        yield put ({type: 'SET_BACKLOG', payload: response.data})
     } catch (error) {
         alert(`Sorry cannot fetchList the the moment`);
         console.log('Error in getting List', error);
@@ -26,7 +26,7 @@ function* deleteBacklogGame(action) {
 
 
 function* fetchBacklogSaga() {
-    yield takeLatest('GET_BACKLOG_GAMES', backlogList);
+    yield takeEvery('FETCH_BACKLOG_GAMES', backlogList);
     yield takeLatest('DELETE_BACKLOG', deleteBacklogGame);
 }
 

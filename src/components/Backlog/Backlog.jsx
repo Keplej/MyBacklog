@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Card, CardContent, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Grid, Paper, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 // This is one of our simplest components
@@ -12,6 +12,8 @@ import { useHistory } from 'react-router-dom';
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    width: '75%',
+    float: 'left',
   },
   bullet: {
     display: 'inline-block',
@@ -19,7 +21,7 @@ const useStyles = makeStyles({
     transform: 'scale(0.8)',
   },
   title: {
-    fontSize: 14,
+    fontSize: 20,
   },
   pos: {
     marginBottom: 12,
@@ -52,42 +54,27 @@ function Backlog() {
   }, []);
 
   return (
-    // <div className="container">
-    //     <h2>Your Backlog</h2>
-    //     <p>Testing to all items from db</p>
-    //     <section>
-    //       <Card
-    //       //  className={classes.root}
-    //        >
-    //       {list.map((backlog, i) => {
-    //         return(
-    //           <CardContent item key={backlog.id}>
-    //             <Typography className={classes.title} color="textSecondary" gutterBottom>{backlog.name}</Typography>
-    //             <Typography variant="body2" component="p">{backlog.description}</Typography>
-    //             <Button variant="contained" color="secondary" 
-    //             value={backlog.id} onClick={(event) => handleDelete(backlog.id)}>Delete</Button>
-    //             <Button color="primary">Currently Playing</Button>
-    //             <Button>Edit</Button>
-    //         </CardContent>
-    //         )
-    //       })}
-    //     </Card>
-    //   </section>
-    // </div>
-
     <div className="container">
-      <form>
-        {list.map((lists, i) => {
-          return(
-          <Card className={classes.root} key={i}>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>{lists.name}</Typography>
-            <Typography variant="body2" component="p">{lists.description}</Typography>
-            <Button variant="contained" color="secondary" onClick={(event) => viewDetails(event, lists)}>View</Button>
-            <Button color="primary" value={lists.id} onClick={(event) => handleDelete(lists.id)}>Delete</Button>
-          </Card>
-          )
-        })}
-      </form>
+      <h2>My Backlog</h2>
+      <Grid container
+        direction="column"
+        justify="flex-start"
+        alignItems="center">
+        <section>
+          {list.map((lists, i) => {
+            return(
+            <Card className={classes.root} key={i}>
+              <CardContent>
+              <Typography className={classes.title} color="textSecondary" gutterBottom>{lists.name}</Typography>
+              <Typography variant="body2" component="p">{lists.description}</Typography>
+              <Button variant="contained" color="secondary" onClick={(event) => viewDetails(event, lists)}>View</Button>
+              <Button color="primary" value={lists.id} onClick={(event) => handleDelete(lists.id)}>Delete</Button>
+              </CardContent>
+            </Card>
+            )
+          })}
+        </section>
+      </Grid>
     </div>
   );
 }

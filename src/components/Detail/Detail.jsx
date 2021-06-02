@@ -1,7 +1,23 @@
+import { Button, Card, Grid, makeStyles, TextField } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        // minWidth: 275,
+        // width: '75%',
+        // float: 'left',
+      },
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: '45ch',
+      },
+    },
+  }));
 
 function Detail() {
 
@@ -10,6 +26,8 @@ function Detail() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const history = useHistory();
+
+    const classes = useStyles();
     
 
     const [editMode, setEditMode] = useState(false);
@@ -46,17 +64,23 @@ function Detail() {
 
 
     return (
-        <div>
+        <Grid>
+        <Card className="container"> 
             <h2>Game Name:</h2>
-            <button onClick={() => {history.push('/backlog')}}>Back</button>
+            <Button variant="contained" color="primary" onClick={() => {history.push('/backlog')}}>Back</Button>
 
             {editMode === false &&
-            <button onClick={handleEdit}>Edit</button>
+            <Button variant="contained" color="secondary" onClick={handleEdit}>Edit</Button>
             }
             {list && list.name && editMode ?
             <div>
                 <label>Game Name:</label>
-                <input type="text" value={name} onChange={(event) => setName(event.target.value)}/>
+                <TextField
+                id="standard-multiline-flexible"
+                label="Multiline"
+                multiline
+                rowsMax={4} type="text" value={name} 
+                onChange={(event) => setName(event.target.value)}/>
             </div>
             :
             <div>
@@ -67,7 +91,16 @@ function Detail() {
             {list && list.description && editMode ?
             <div>
                 <label>Description:</label>
-                <input type="text" value={description} onChange={(event) => setDescription(event.target.value)}/>
+                <TextField
+                id="outlined-multiline-flexible"
+                // label="Description"
+                multiline
+                rowsMax={15}
+                variant="outlined"
+                defaultValue="Default Value"
+                value={description} 
+                onChange={(event) => setDescription(event.target.value)}
+                />
             </div>
             :
             <div>
@@ -76,9 +109,10 @@ function Detail() {
             </div>
             }
             {editMode &&
-            <button onClick={saveEdit}>Save</button>
+            <Button variant="contained" color="secondary" onClick={saveEdit}>Save</Button>
             }
-        </div>
+        </Card>
+        </Grid>
     )
 }
 

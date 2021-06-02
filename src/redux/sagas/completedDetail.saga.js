@@ -16,8 +16,7 @@ function* fetchCompletedDetail(action) {
 }
 
 function* fetchCompletedBacklogSaga() {
-    yield takeEvery('UPDATE_COMPLETED', fetchCompletedDetail);
-
+    yield takeEvery('FETCH_COMPLETED_DETAIL', fetchCompletedDetail);
 }
 
 export default fetchCompletedBacklogSaga;

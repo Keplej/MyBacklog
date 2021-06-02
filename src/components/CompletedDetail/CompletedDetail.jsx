@@ -66,7 +66,7 @@ function CompletedDetail() {
         <Grid>
         <Card className="container"> 
             <h2>Game Name:</h2>
-            <Button variant="contained" color="primary" onClick={() => {history.push('/backlog')}}>Back</Button>
+            <Button variant="contained" color="primary" onClick={() => {history.push('/completed')}}>Back</Button>
 
             {editMode === false &&
             <Button variant="contained" color="secondary" onClick={handleEdit}>Edit</Button>

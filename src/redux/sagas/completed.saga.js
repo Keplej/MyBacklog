@@ -6,7 +6,7 @@ function* completedList() {
     try {
         // Come back and fix '/api/shelf'
         const response = yield axios.get('/api/completed');
-        yield put ({type: 'SET_COMPLETED', payload: response})
+        yield put ({type: 'SET_COMPLETED', payload: response.data})
     } catch (error) {
         alert(`Sorry cannot fetchList atht the moment`);
         console.log('Error in getting List', error);
@@ -17,7 +17,7 @@ function* deleteCompletedGame(action) {
     try {
         let id = action.payload;
         yield axios.delete(`/api/completed/${id}`);
-        yield put({type: 'GET_COMPLETED'});
+        yield put({type: 'FETCH_COMPLETED'});
     } catch (error) {
         alert(`Error in delete`);
         console.log('Error getting list', error);
@@ -25,7 +25,7 @@ function* deleteCompletedGame(action) {
 }
 
 function* completedSaga() {
-    yield takeLatest('GET_COMPLETED', completedList);
+    yield takeLatest('FETCH_COMPLETED', completedList);
     yield takeLatest('DELETE_COMPLETED', deleteCompletedGame);
 }
 

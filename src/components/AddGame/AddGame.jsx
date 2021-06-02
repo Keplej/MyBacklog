@@ -16,7 +16,7 @@ function AddGame() {
     
     const addGame = useSelector(store => store.addGameReducer);
 
-    const getStatus = useSelector((store) => store.statuslistReducer)
+    const getStatus = useSelector((store) => store.statuslistReducer);
 
 
     const handleSubmit = (event) => {

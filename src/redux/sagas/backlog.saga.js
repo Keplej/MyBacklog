@@ -25,22 +25,13 @@ function* deleteBacklogGame(action) {
 }
 
 
-function* editBacklogGame(action) {
-    try {
-        yield axios.put(`api/backlog/${action.payload.id}`, action.payload);
-        yield put({type: 'FETCH_BACKLOG_GAMES'});
-        yield put({type: 'SET_BACKLOG_DETAIL', payload: action.payload});
-    } catch (error) {
-        alert(`Sorry error in edit backlog game`)
-        console.log('Error editing game', error);
-    }
-}
+
 
 
 function* fetchBacklogSaga() {
     yield takeEvery('FETCH_BACKLOG_GAMES', backlogList);
     yield takeEvery('DELETE_BACKLOG', deleteBacklogGame);
-    yield takeEvery('UPDATE_BACKLOG', editBacklogGame);
+    
 }
 
 export default fetchBacklogSaga;

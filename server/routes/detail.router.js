@@ -19,7 +19,7 @@ const router = express.Router();
 
 router.put('/:id', (req,res) => {
     console.log('Checking put, id=', req.params.id, 'body=', req.body);
-    const queryText = `UPDATE "game" SET name=$2, description=$3 WHERE "id" = $1;`;
+    const queryText = `UPDATE "game" SET name=$1, description=$2 WHERE "id" = $3;`;
     pool.query(queryText, [req.body.name, req.body.description, req.params.id])
     .then(result => {
         res.sendStatus(201);

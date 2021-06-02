@@ -1,4 +1,4 @@
-import { takeLatest, put } from "@redux-saga/core/effects";
+import { takeEvery, put } from "@redux-saga/core/effects";
 import axios from "axios";
 
 
@@ -25,8 +25,8 @@ function* deleteCompletedGame(action) {
 }
 
 function* completedSaga() {
-    yield takeLatest('FETCH_COMPLETED', completedList);
-    yield takeLatest('DELETE_COMPLETED', deleteCompletedGame);
+    yield takeEvery('FETCH_COMPLETED', completedList);
+    yield takeEvery('DELETE_COMPLETED', deleteCompletedGame);
 }
 
 export default completedSaga;

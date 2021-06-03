@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { Avatar, Button, Container, CssBaseline, Grid, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Box from '@material-ui/core/Box';
 
 
@@ -72,7 +72,7 @@ function LoginForm() {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar>
-          <LockOutlinedIcon />
+          <LockOpenIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
@@ -122,8 +122,14 @@ function LoginForm() {
           >
             Sign In
           </Button>
+          
           <Grid container>
-            <Grid item xs>
+          <Grid item xs>
+                <Link href="http://localhost:3000/#/home" variant="body2">
+                  Back Home
+                </Link>
+              </Grid>
+            <Grid item>
               <Link href="http://localhost:3000/#/registration" variant="body2">
                 {"Don't have an account? Sign up"}
               </Link>

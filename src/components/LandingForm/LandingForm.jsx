@@ -6,6 +6,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Link from '@material-ui/core/Link';
 import Box from '@material-ui/core/Box';
 import { useHistory } from 'react-router';
+import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 
 
 
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/6/62/Starsinthesky.jpg)',
+    backgroundImage: 'url(https://wallpapercave.com/wp/wp2841763.jpg)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -79,11 +80,16 @@ function LandingForm() {
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <SportsEsportsIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
           Welcome to My Backlog
           </Typography>
+          <br />
+          <Typography component="h3">
+            My Backlog is a videogame catalog website that makes it easy to customize, organize, and keep track of your games.
+          </Typography>
+          <br />
               <Button
               fullWidth
               variant="contained"

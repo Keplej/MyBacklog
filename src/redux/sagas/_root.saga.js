@@ -9,6 +9,7 @@ import addGameSaga from './AddGame.saga';
 import statusSaga from './status.saga';
 import fetchDetailSaga from './detail.saga';
 import fetchCompletedBacklogSaga from './completedDetail.saga';
+import fetchCurrentDetailSaga from './currentDetail.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -29,5 +30,6 @@ export default function* rootSaga() {
     statusSaga(),
     fetchDetailSaga(),
     fetchCompletedBacklogSaga(),
+    fetchCurrentDetailSaga(),
   ]);
 }

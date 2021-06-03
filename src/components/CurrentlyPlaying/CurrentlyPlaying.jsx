@@ -8,6 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { useHistory } from 'react-router';
 
 // This is one of our simplest components
 // It doesn't have local state
@@ -30,81 +31,71 @@ const useStyles = makeStyles({
 
 function CurrentlyPlaying() {
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
+  
   const dispatch = useDispatch();
-  const list = useSelector(store => store.currentlistReducer.data);
-  const user = useSelector(store => store.user);
+  const list = useSelector(store => store.currentlistReducer);
+  const history = useHistory();
+  // const user = useSelector(store => store.user);
   
   const classes = useStyles();
 
-  function handleDelete(id) {
-    dispatch({type: 'DELETE_CURRENT', payload: id})
+  const viewDetails = (event, lists) => {
+    console.log('Clicked on detail', lists);
+    history.push(`/currentdetail/${lists.id}`);
   }
 
-  useEffect(() => {
-    dispatch({type: 'GET_GAMES'});
-  }, []);
+
+function handleDelete(id) {
+  dispatch({type: 'DELETE_CURRENT', payload: id})
+}
+
+useEffect(() => {
+dispatch({type: 'FETCH_CURRENT'});
+}, []);
+
+
+  // const dispatch = useDispatch();
+  // const list = useSelector(store => store.currentlistReducer.data);
+  // const user = useSelector(store => store.user);
+
+  // const history = useHistory();
+  
+  // const classes = useStyles();
+
+  // function handleDelete(id) {
+  //   dispatch({type: 'DELETE_CURRENT', payload: id})
+  // }
+
+  // useEffect(() => {
+  //   dispatch({type: 'GET_GAMES'});
+  // }, []);
 
 
 
   return (
     <div className="container">
-      <h2>Currently Playing</h2>
-      <p>Testing to all items from db</p>
-      <Grid
-        container
-        direction="column"
-        justify="flex-start"
-        alignItems="center"
-      >
-      <section>
-      {list ? 
-      <Card className={classes.root}>
-        {list.map((game) => 
-          // return(
-            <CardContent key={game.id}>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>{game.name}</Typography>
-              <Typography variant="body2" component="p">{game.description}</Typography>
-              {/* {(game && game.user_id === user.id) ?  */}
-            <div>
-            <IconButton
-              aria-label="more"
-              aria-controls="long-menu"
-              aria-haspopup="true"
-              onClick={handleClick}
-            >
-              <MoreVertIcon />
-            </IconButton>
-              <Menu id="fade-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={open}
-                onClose={handleClose}
-                TransitionComponent={Fade}>
-                <MenuItem variant="contained" color="secondary" 
-                value={game.id} onClick={(event) => handleDelete(game.id)}>Delete</MenuItem>
-                <ListItemIcon>
-                  <MenuItem onClick={handleClose}>Edit</MenuItem>
-                </ListItemIcon>
-              </Menu>
-            </div>
-              {/* : ''} */}
-          </CardContent>
-          // );
-        )}
-      </Card> : ''}
-      </section>
-      </Grid>
+      <h2>Current Games</h2>
+            <p>Testing to all items from db</p>
+                <Grid container
+                  direction="column"
+                  justify="flex-start"
+                      alignItems="center">
+              <section>
+                {list.map((lists, i) => {
+                return(
+                <Card className={classes.root} key={i}>
+                  <CardContent>
+                    <Typography className={classes.title} color="textSecondary" gutterBottom>{lists.name}</Typography>
+                    <Typography variant="body2" component="p">{lists.description}</Typography>
+                    <Button variant="contained" color="secondary" onClick={(event) => viewDetails(event, lists)}>View</Button>
+                    <Button color="primary" value={lists.id} onClick={(event) => handleDelete(lists.id)}>Delete</Button>
+                  </CardContent>
+              </Card>
+              )
+            })}
+          </section>
+        </Grid>
     </div>
   );
 }

@@ -15,6 +15,7 @@ const completedRouter = require('./routes/completed.router');
 const addgameRouter = require('./routes/addgame.router');
 const detailRouter = require('./routes/detail.router');
 const completedDetail = require('./routes/completeddetail');
+const currentDetail = require('./routes/currentdetail.router');
 
 //For testing status
 const statusRouter = require('./routes/status.router');
@@ -39,6 +40,7 @@ app.use('/api/completed', completedRouter);
 app.use('/api/addgame', addgameRouter);
 app.use('/api/detail', detailRouter);
 app.use('/api/completeddetail', completedDetail);
+app.use('/api/currentdetail', currentDetail);
 
 // test for status 
 app.use('/api/status', statusRouter);

@@ -23,6 +23,7 @@ import Completed from '../Completed/Completed';
 import AddGame from '../AddGame/AddGame';
 import Detail from '../Detail/Detail';
 import CompletedDetail from '../CompletedDetail/CompletedDetail';
+import CurrentlyPlayingDetail from '../CurrentlyPlayingDetail/CurrentlyPlayingDetail';
 
 import './App.css';
 
@@ -96,6 +97,15 @@ function App() {
           path='/completeddetail/:id'
           >
             <CompletedDetail />
+
+          </ProtectedRoute>
+
+          <ProtectedRoute
+          
+          exact
+          path='/currentdetail/:id'
+          >
+            <CurrentlyPlayingDetail />
 
           </ProtectedRoute>
 

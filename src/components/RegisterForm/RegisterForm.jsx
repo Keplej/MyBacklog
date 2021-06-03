@@ -22,12 +22,13 @@ function Copyright() {
   );
 }
 
+// https://source.unsplash.com/random
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
+    backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/6/62/Starsinthesky.jpg)',
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -53,15 +54,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const useStyles = makeStyles((theme) => ({
-//   TextField: {
-//     '& > *': {
-//       margin: theme.spacing(2),
-//       width: '25ch',
-//       padding: '0 10px',
-//     },
-//   },
-// }));
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -161,9 +153,6 @@ function RegisterForm() {
             <Box mt={5}>
               <Copyright />
             </Box>
-          {/* <div>
-            <input className="btn" type="submit" name="submit" value="Register" />
-          </div> */}
           </form>
         </div>
       </Grid>

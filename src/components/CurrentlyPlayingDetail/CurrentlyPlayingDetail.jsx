@@ -29,7 +29,7 @@ function CurrentlyPlayingDetail() {
             description: description,
         }
         console.log('updated backlog detail:', updatedCurrently);
-        dispatch({type: 'UPDATE_COMPLETED', payload: updatedCurrently});
+        dispatch({type: 'UPDATE_CURRENT', payload: updatedCurrently});
  
 
         setEditMode(false)

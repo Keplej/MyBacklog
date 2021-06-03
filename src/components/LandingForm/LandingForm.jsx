@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Link from '@material-ui/core/Link';
 import Box from '@material-ui/core/Box';
+import { useHistory } from 'react-router';
 
 
 
@@ -55,30 +56,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function RegisterForm() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const errors = useSelector((store) => store.errors);
-  const dispatch = useDispatch();
+function LandingForm() {
+
+  const history = useHistory();
   const classes = useStyles();
 
-  const registerUser = (event) => {
-    event.preventDefault();
+  const registrationHandle = () => {
+    history.push('/registration');
+  }
 
-    dispatch({
-      type: 'REGISTER',
-      payload: {
-        username: username,
-        password: password,
-      },
-    });
-  }; // end registerUser
+  const signinHandle = () => {
+    history.push('/login');
+  }
+  
+
 
   return (
     <Grid container component="main" 
-    className={classes.root} 
-    // className="formPanel" 
-    onSubmit={registerUser}>
+    className={classes.root} >
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -87,72 +82,33 @@ function RegisterForm() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-          Register User
+          Welcome to My Backlog
           </Typography>
-      {errors.registrationMessage && (
-        <h3 className="alert" role="alert">
-          {errors.registrationMessage}
-        </h3>
-      )}
-          <form className={classes.form} noValidate>
-            <TextField
-              id="outlined-password-input"
-              label="Username"
-              type="username"
-              autoComplete="current-username"
-              variant="outlined"
-              type="text"
-              name="username"
-              margin="normal"
-              value={username}
-              fullWidth
-              autoFocus
-              required
-              onChange={(event) => setUsername(event.target.value)}
-            />
-              <TextField
-                id="outlined-password-input"
-                label="Password"
-                type="password"
-                autoComplete="current-password"
-                variant="outlined"
-                name="password"
-                value={password}
-                fullWidth
-                required
-                onChange={(event) => setPassword(event.target.value)}
-              />
               <Button
-              type="submit"
-              name="submit"
               fullWidth
               variant="contained"
               color="primary"
-              value="Register"
+              className={classes.submit}
+              onClick={registrationHandle}
+            >
+              Create a new Account
+            </Button>
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={signinHandle}
               className={classes.submit}
             >
-              Register
+              Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="http://localhost:3000/#/home" variant="body2">
-                  Back Home
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="http://localhost:3000/#/login" variant="body2">
-                  {"Have an account? Sign In"}
-                </Link>
-              </Grid>
-            </Grid>
             <Box mt={5}>
               <Copyright />
             </Box>
-          </form>
         </div>
       </Grid>
     </Grid>
   );
 }
 
-export default RegisterForm;
+export default LandingForm;

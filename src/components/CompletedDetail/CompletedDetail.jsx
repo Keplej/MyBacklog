@@ -25,7 +25,11 @@ function CompletedDetail() {
     const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+    const [status, setStatus] = useState(0);
     const history = useHistory();
+
+
+    const getStatus = useSelector((store) => store.statuslistReducer);
 
     const classes = useStyles();
     
@@ -37,6 +41,7 @@ function CompletedDetail() {
 
         setName(list.name);
         setDescription(list.description);
+        setStatus(list.status);
     }
 
     const saveEdit = () => {
@@ -44,6 +49,7 @@ function CompletedDetail() {
             id: list.id,
             name: name,
             description: description,
+            status: status,
         }
         console.log('updated backlog detail:', updatedCompleted);
         dispatch({type: 'UPDATE_COMPLETED', payload: updatedCompleted});
@@ -107,6 +113,22 @@ function CompletedDetail() {
                 <span>{list.description}</span>
             </div>
             }
+            {list && list.status && editMode ?
+            <div>
+                <label>Status:</label>
+                    <select
+                        value={status}
+                        name='status'
+                        onChange={(event) => setStatus(event.target.value)}>
+                        <option>{list.status}</option>
+                    </select>
+            </div>
+            :
+            <div>
+                <label>Status:</label>
+                <span>{list.status}</span>
+            </div>
+            }
             {editMode &&
             <Button variant="contained" color="secondary" onClick={saveEdit}>Save</Button>
             }
@@ -116,3 +138,18 @@ function CompletedDetail() {
 }
 
 export default CompletedDetail;
+
+
+// <select 
+//                 value={status.id}
+//                 name='status'
+//                 onChange={(event) => setStatus(event.target.value)}
+//                 >
+//                     {getStatus.map((game) => {
+//                         return (
+//                             <option 
+//                             key={game.id} value={game.id}>{game.name}
+//                             </option>
+//                         )
+//                     })}
+//                 </select>

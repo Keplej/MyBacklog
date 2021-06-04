@@ -18,7 +18,7 @@ function* fetchCurrentDetail(action) {
 function* editCurrentGame(action) {
     console.log('In edit saga', action.payload);
     try {
-        yield axios.put(`api/completeddetail/${action.payload.id}`, action.payload);
+        yield axios.put(`/api/currentdetail/${action.payload.id}`, action.payload);
         yield put({type: 'FETCH_CURRENT'});
         yield put({type: 'SET_CURRENT_DETAIL', payload: action.payload});
     } catch (error) {

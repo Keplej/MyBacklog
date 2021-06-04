@@ -8,7 +8,7 @@ const router = express.Router();
  */
  router.get('/:id', rejectUnauthenticated, (req, res) => {
     // const details = req.params.id;
-    let queryText =  `SELECT id, name, description FROM "game" WHERE id=$1;`;
+    let queryText =  `SELECT id, name, description, status FROM "game" WHERE id=$1;`;
     pool.query(queryText, [req.params.id])
     .then((result) => {
         res.send(result.rows[0]);
@@ -20,8 +20,8 @@ const router = express.Router();
 
 router.put('/:id', (req,res) => {
     console.log('Checking put, id=', req.params.id, 'body=', req.body);
-    const queryText = `UPDATE "game" SET name=$1, description=$2 WHERE "id" = $3;`;
-    pool.query(queryText, [req.body.name, req.body.description, req.params.id])
+    const queryText = `UPDATE "game" SET name=$1, description=$2, status=$3 WHERE "id" = $4;`;
+    pool.query(queryText, [req.body.name, req.body.description, req.body.status, req.params.id])
     .then(result => {
         res.sendStatus(201);
     })

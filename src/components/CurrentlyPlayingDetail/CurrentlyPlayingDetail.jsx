@@ -8,9 +8,11 @@ function CurrentlyPlayingDetail() {
     const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+    const [status, setStatus] = useState(0);
     const history = useHistory();
 
     // const classes = useStyles();
+    const getStatus = useSelector((store) => store.statuslistReducer);
     
 
     const [editMode, setEditMode] = useState(false);
@@ -20,6 +22,7 @@ function CurrentlyPlayingDetail() {
 
         setName(list.name);
         setDescription(list.description);
+        setStatus(list.status);
     }
 
     const saveEdit = () => {
@@ -27,6 +30,7 @@ function CurrentlyPlayingDetail() {
             id: list.id,
             name: name,
             description: description,
+            status: status,
         }
         console.log('updated backlog detail:', updatedCurrently);
         dispatch({type: 'UPDATE_CURRENT', payload: updatedCurrently});
@@ -42,6 +46,7 @@ function CurrentlyPlayingDetail() {
     useEffect(() => {
         console.log('In ueseEffect param:', id);
         dispatch({type: 'FETCH_CURRENT_DETAIL', payload: id})
+        dispatch({type: 'FETCH_STATUS', payload: id})
     }, [])
     
 
@@ -89,6 +94,28 @@ function CurrentlyPlayingDetail() {
             <div>
                 <label>Description:</label>
                 <span>{list.description}</span>
+            </div>
+            }
+            {list && list.status && editMode ?
+            <div>
+                <select 
+                value={status.id}
+                name='status'
+                onChange={(event) => setStatus(event.target.value)}
+                >
+                    {getStatus.map((game) => {
+                        return (
+                            <option 
+                            key={game.id} value={game.id}>{game.name}
+                            </option>
+                        )
+                    })}
+                </select>
+            </div>
+            :
+            <div>
+                <label>Status:</label>
+                <span>{list.status}</span>
             </div>
             }
             {editMode &&

@@ -65,6 +65,7 @@ function CompletedDetail() {
     useEffect(() => {
         console.log('In ueseEffect param:', id);
         dispatch({type: 'FETCH_COMPLETED_DETAIL', payload: id})
+        dispatch({type: 'FETCH_STATUS', payload: id})
     }, [])
 
 
@@ -115,13 +116,19 @@ function CompletedDetail() {
             }
             {list && list.status && editMode ?
             <div>
-                <label>Status:</label>
-                    <select
-                        value={status}
-                        name='status'
-                        onChange={(event) => setStatus(event.target.value)}>
-                        <option>{list.status}</option>
-                    </select>
+                <select 
+                value={status.id}
+                name='status'
+                onChange={(event) => setStatus(event.target.value)}
+                >
+                    {getStatus.map((game) => {
+                        return (
+                            <option 
+                            key={game.id} value={game.id}>{game.name}
+                            </option>
+                        )
+                    })}
+                </select>
             </div>
             :
             <div>
@@ -140,16 +147,16 @@ function CompletedDetail() {
 export default CompletedDetail;
 
 
-// <select 
-//                 value={status.id}
-//                 name='status'
-//                 onChange={(event) => setStatus(event.target.value)}
-//                 >
-//                     {getStatus.map((game) => {
-//                         return (
-//                             <option 
-//                             key={game.id} value={game.id}>{game.name}
-//                             </option>
-//                         )
-//                     })}
-//                 </select>
+{/* <select 
+                value={status.id}
+                name='status'
+                onChange={(event) => setStatus(event.target.value)}
+                >
+                    {getStatus.map((game) => {
+                        return (
+                            <option 
+                            key={game.id} value={game.id}>{game.name}
+                            </option>
+                        )
+                    })}
+                </select> */}

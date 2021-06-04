@@ -3,6 +3,7 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import './UserPageCSS.css';
 
 
 
@@ -56,14 +57,6 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-  const current = [
-    {
-          title: 'Currently Playing',
-          description: ['Here we can go to our Currently playing list'],
-          buttonText: 'To Currently Playing',
-          buttonVariant: ['outlined']
-        },
-  ]
 
 
   const footers = [
@@ -109,10 +102,10 @@ function UserPageForm() {
             This is your dashboard, Here we can navigate to your different lists {user.username}!
           </Typography>
         </Container>
-        <Container maxWidth="md" component="main">
+        <Container  maxWidth="md" component="main">
           <Grid container spacing={5} alignItems="flex-end">
-              <Grid md={4}> 
-                <Card>
+              <Grid md={4} sm={6}> 
+                <Card className="card">
                   <CardHeader
                     title='Completed'
                     titleTypographyProps={{ align: 'center' }}
@@ -139,7 +132,7 @@ function UserPageForm() {
                     <Button 
                         fullWidth variant='outlined'
                         color="primary"
-                        onClick={() => {history.push('/current')}}>
+                        onClick={() => {history.push('/completed')}}>
                     Completed
                     </Button>
                   </CardActions>
@@ -150,7 +143,7 @@ function UserPageForm() {
         <Container maxWidth="md" component="main">
           <Grid container spacing={5} alignItems="flex-end">
               <Grid  xs={12} md={4}>
-                <Card>
+                <Card className="card">
                   <CardHeader
                     title='Backlog'
                     titleTypographyProps={{ align: 'center' }}
@@ -182,9 +175,8 @@ function UserPageForm() {
         </Container>
         <Container maxWidth="md" component="main">
           <Grid container spacing={5} alignItems="flex-end">
-            
               <Grid i xs={12} sm={12} md={4}>
-                <Card>
+                <Card className="card">
                   <CardHeader
                     title="Current"
                     titleTypographyProps={{ align: 'center' }}
@@ -194,18 +186,14 @@ function UserPageForm() {
                   <CardContent>
                     <div className={classes.cardPricing}>
                       <Typography component="h2" variant="h3" color="textPrimary">
-
                       </Typography>
                       <Typography variant="h6" color="textSecondary">
-                        
                       </Typography>
                     </div>
                     <ul>
-
                         <Typography component="li" variant="subtitle1" align="center">
                         Here we can go to our Current list
                         </Typography>
-
                     </ul>
                   </CardContent>
                   <CardActions>
@@ -217,10 +205,6 @@ function UserPageForm() {
               </Grid>
           </Grid>
         </Container>
-
-        
-        
-
         <Container maxWidth="md" component="footer" className={classes.footer}>
           <Grid container spacing={4} justify="space-evenly">
             {footers.map((footer) => (
@@ -241,7 +225,6 @@ function UserPageForm() {
             ))}
           </Grid>
         </Container>
-        {/* End footer */}
       </React.Fragment>
     )
 }

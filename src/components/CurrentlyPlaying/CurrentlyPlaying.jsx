@@ -74,7 +74,6 @@ dispatch({type: 'FETCH_CURRENT'});
 
   return(
     <React.Fragment>
-      {/* <CssBaseline /> */}
       <AppBar position="relative" className={classes.AppBar}>
         <Toolbar>
           <GamesIcon className={classes.icon} />

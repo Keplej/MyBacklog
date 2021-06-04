@@ -1,4 +1,5 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -12,7 +13,7 @@ const router = express.Router();
 
 
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     let queryText =  
     // `SELECT * FROM "game" WHERE "game".status=2 AND "game".user_id=${req.user.id};`
     `SELECT "game".id, "game".name, "game".description, "game".image_url FROM "game"

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppBar, Button, Card, CardActions, CardContent, CardMedia, Container, CssBaseline, Grid, Link, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import GamesIcon from '@material-ui/icons/Games';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -77,7 +77,7 @@ dispatch({type: 'FETCH_CURRENT'});
       {/* <CssBaseline /> */}
       <AppBar position="relative" className={classes.AppBar}>
         <Toolbar>
-          <CheckCircleIcon className={classes.icon} />
+          <GamesIcon className={classes.icon} />
           <Typography variant="h6" color="inherit" noWrap>
             Currently Playing
           </Typography>

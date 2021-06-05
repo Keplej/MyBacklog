@@ -14,7 +14,7 @@ const router = express.Router();
  */
  router.get('/:id', (req, res) => {
     // const details = req.params.id;
-    let queryText =  `SELECT id, name, description, status FROM "game" WHERE id=$1;`;
+    let queryText =  `SELECT id, name, description, status, image_url FROM "game" WHERE id=$1;`;
     pool.query(queryText, [req.params.id])
     .then((result) => {
         res.send(result.rows[0]);

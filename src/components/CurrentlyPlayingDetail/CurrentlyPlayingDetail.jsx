@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useHistory } from 'react-router';
+
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -69,7 +68,7 @@ function CurrentlyPlayingDetail() {
     const history = useHistory();
     const classes = useStyles();
 
-    const disabledClassNameProps = { className: "Mui-disabled" };
+    
     // const classes = useStyles();
     const getStatus = useSelector((store) => store.statuslistReducer);
 

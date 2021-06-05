@@ -4,6 +4,7 @@ import { AppBar, Button, Card, CardActions, CardContent, CardMedia, Container, C
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+// import CompletedBackground from '../ParticlesConfig/CompletedBackground';
 
 function Copyright() {
   return (
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '100%', // 16:9
   },
   cardContent: {
     flexGrow: 1,
@@ -85,7 +86,6 @@ function Completed() {
 
     return(
       <React.Fragment>
-        {/* <CssBaseline /> */}
         <AppBar position="relative" className={classes.AppBar}>
           <Toolbar>
             <CheckCircleIcon className={classes.icon} />
@@ -107,6 +107,7 @@ function Completed() {
             {list.map((lists, i) => (
               <Grid item key={i} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
+                  <CardMedia  image={lists.image_url} className={classes.cardMedia} />
                   <CardContent className={classes.cardContent}>
                     <Typography className={classes.gamesHeader} gutterBottom variant="h5" component="h2">
                     {lists.name}

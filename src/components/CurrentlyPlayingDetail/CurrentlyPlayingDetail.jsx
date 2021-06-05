@@ -1,7 +1,54 @@
-import { Button, Card, Grid, makeStyles, TextField } from "@material-ui/core";
-import { useEffect, useState } from "react";
+import { Button, CardMedia, FormControl, Grid, InputLabel, Link, MenuItem, Paper, Select, TextField, Typography } from '@material-ui/core';
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { useHistory } from 'react-router';
+
+const useStyles = makeStyles((theme) => ({
+    appBar: {
+      position: 'relative',
+    },
+    layout: {
+      width: 'auto',
+      marginLeft: theme.spacing(2),
+      marginRight: theme.spacing(2),
+      [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+        width: 600,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
+    },
+    paper: {
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(3),
+      padding: theme.spacing(2),
+      [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+        marginTop: theme.spacing(6),
+        marginBottom: theme.spacing(6),
+        padding: theme.spacing(3),
+      },
+    },
+    stepper: {
+      padding: theme.spacing(3, 0, 5),
+    },
+    buttons: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+    },
+    button: {
+      marginTop: theme.spacing(3),
+      marginLeft: theme.spacing(1),
+    },
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+    cardMedia: {
+        paddingTop: '75%', 
+    },
+  }));
 
 function CurrentlyPlayingDetail() {
     const list = useSelector(store => store.currentDetailReducer);
@@ -9,10 +56,14 @@ function CurrentlyPlayingDetail() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState(0);
+    const [open, setOpen] = React.useState(false);
     const history = useHistory();
+    const classes = useStyles();
 
+    const disabledClassNameProps = { className: "Mui-disabled" };
     // const classes = useStyles();
     const getStatus = useSelector((store) => store.statuslistReducer);
+
     
 
     const [editMode, setEditMode] = useState(false);
@@ -50,81 +101,98 @@ function CurrentlyPlayingDetail() {
     }, [])
     
 
-    return (
-        <div className="container">
-            <Grid>
-            <Card className="container"> 
-            <h2>Game Name:</h2>
-            <Button variant="contained" color="primary" onClick={() => {history.push('/current')}}>Back</Button>
+    const handleClose = () => {
+        setOpen(false);
+      };
+    
+      const handleOpen = () => {
+        setOpen(true);
+      };
 
-            {editMode === false &&
-            <Button variant="contained" color="secondary" onClick={handleEdit}>Edit</Button>
-            }
+    return (
+        <main className={classes.layout} >
+        <Paper className={classes.paper}>
+        <CardMedia  image={list.image_url} className={classes.cardMedia} />
+            <br />
+            <Typography component="h1" variant="h4" align="center">
+            {list.name}
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+            {/* Edit {list.name} */}
+            </Typography>
+            <Grid container spacing={3}>
             {list && list.name && editMode ?
-            <div>
-                <label>Game Name:</label>
+                <Grid item xs={12}>
                 <TextField
-                id="standard-multiline-flexible"
-                label="Multiline"
-                multiline
-                rowsMax={4} type="text" value={name} 
-                onChange={(event) => setName(event.target.value)}/>
-            </div>
-            :
-            <div>
-                <label>Game Name:</label>
-                <span>{list.name}</span>
-            </div>
-            }
-            {list && list.description && editMode ?
-            <div>
-                <label>Description:</label>
-                <TextField
-                id="outlined-multiline-flexible"
-                // label="Description"
-                multiline
-                rowsMax={15}
-                variant="outlined"
-                // defaultValue="Default Value"
-                value={description} 
-                onChange={(event) => setDescription(event.target.value)}
+                    label="Game Name"
+                    value={name}
+                    type="text"
+                    fullWidth
+                    onChange={(event) => setName(event.target.value)}
                 />
-            </div>
-            :
-            <div>
-                <label>Description:</label>
-                <span>{list.description}</span>
-            </div>
+                </Grid>
+                :
+                <Grid item xs={12}>
+                {/* <Typography variant="h5" gutterBottom>Game: {list.name}</Typography> */}
+                </Grid>
+                }
+                {list && list.description && editMode ?
+                <Grid item xs={12}>
+                <TextField
+                    multiline={true}
+                    rows={17}
+                    type="text"
+                    value={description}
+                    onChange={(event) => setDescription(event.target.value)}
+                    label="Game Description"
+                    fullWidth
+                    autoComplete="shipping address-line2"
+                />
+                </Grid>
+                :
+                <Grid item xs={12}>
+                    <Typography>{list.description}</Typography>
+            </Grid>
             }
             {list && list.status && editMode ?
-            <div>
-                <select 
-                value={status.id}
-                name='status'
-                onChange={(event) => setStatus(event.target.value)}
-                >
-                    {getStatus.map((game) => {
+                <Grid item xs={12} sm={6}>
+                    <FormControl className={classes.formControl}>
+                    <InputLabel>Status</InputLabel>
+                        <Select
+                        open={open}
+                        onClose={handleClose}
+                        onOpen={handleOpen}
+                        value={status.id}
+                        name='status'
+                        onChange={(event) => setStatus(event.target.value)}
+                        >
+                        {getStatus.map((game) => {
                         return (
-                            <option 
-                            key={game.id} value={game.id}>{game.name}
-                            </option>
+                            <MenuItem key={game.id} value={game.id}>
+                            {game.name}
+                            </MenuItem>
                         )
-                    })}
-                </select>
-            </div>
-            :
-            <div>
-                <label>Status:</label>
-                <span>{list.status}</span>
-            </div>
-            }
-            {editMode &&
-            <Button variant="contained" color="secondary" onClick={saveEdit}>Save</Button>
-            }
-                </Card>
+                        })}
+                        </Select>
+                    </FormControl>
+                </Grid>
+                :
+                <div>
+                    {/* <span>{list.status}</span> */}
+                </div>
+                }
+                {editMode === false &&
+                <Button variant="contained" color="secondary" fullWidth className={classes.button} onClick={handleEdit}>Edit</Button>
+                }
             </Grid>
-        </div>
+            <Button variant="contained" color="secondary" fullWidth className={classes.button} onClick={() => {history.push('/current')}}>Back</Button>
+        </Paper>
+        </main>
     )
 }
 
 export default CurrentlyPlayingDetail;
+
+
+
+

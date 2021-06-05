@@ -1,9 +1,9 @@
-import { AppBar, Button, CssBaseline, FormControl, Grid, InputLabel, Link, MenuItem, MenuList, Paper, Select, Step, StepLabel, Stepper, TextField, Toolbar, Typography } from '@material-ui/core';
+import { Button, FormControl, Grid, InputLabel, Link, MenuItem, Paper, Select, TextField, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import AddGameDetail from './AddGameDetail';
+import { useHistory } from 'react-router';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -54,10 +54,11 @@ function AddGame() {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    // const [url, setUrl] = useState('');
+    const [url, setUrl] = useState('');
     const [status, setStatus] = useState(0);
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const history = useHistory();
     
     // const status = useSelector((store) => store.status);
 
@@ -70,10 +71,11 @@ function AddGame() {
         const addingGame = {
             name: name,
             description: description,
-            // url: url,
+            url: url,
             status: status,
         }
         dispatch({type: 'ADDING_NEW_GAME', payload: addingGame});
+        history.push('/home')
     }
 
     useEffect(() => {
@@ -89,8 +91,6 @@ function AddGame() {
     };
     
     return(
-        
-    
       <form onSubmit={handleSubmit}>
           <main className={classes.layout} >
             <Paper className={classes.paper}>
@@ -115,6 +115,16 @@ function AddGame() {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      label="Game Image"
+                      value={url}
+                      // type="image"
+                      fullWidth
+                      onChange={(event) => setUrl(event.target.value)}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
                       multiline={true}
                       rows={17}
                       type="text"
@@ -150,45 +160,7 @@ function AddGame() {
               <Button variant="contained" color="secondary" type="submit" fullWidth className={classes.button}>Submit</Button>
             </Paper>
           </main>
-        </form>
-       
-
-
-
-         /* <form onSubmit={handleSubmit}>
-           <h3>Game Title:</h3>
-                 <TextField 
-
-        //         type="text"
-        //         placeholder="Game Title"
-        //         value={name}
-        //         onChange={(event) => setName(event.target.value)}
-        //         />
-        //     <h3>Game Description:</h3>
-        //         <textarea 
-        //         type="text"
-        //         placeholder="Description"
-        //         value={description}
-        //         onChange={(event) => setDescription(event.target.value)}
-        //         />
-                
-        //         <br />
-        //         <select 
-        //         value={status.id}
-        //         name='status'
-        //         onChange={(event) => setStatus(event.target.value)}
-        //         >
-        //             {getStatus.map((game) => {
-        //                 return (
-        //                     <option 
-        //                     key={game.id} value={game.id}>{game.name}
-        //                     </option>
-        //                 )
-        //             })}
-        //         </select>
-        //         <br />
-        //     <Button variant="contained" color="secondary" type="submit">Submit</Button>
-        // </form> */
+       </form>
     )
 }
 

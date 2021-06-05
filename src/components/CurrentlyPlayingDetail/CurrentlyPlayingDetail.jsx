@@ -47,7 +47,16 @@ const useStyles = makeStyles((theme) => ({
     },
     cardMedia: {
         paddingTop: '75%', 
-    },
+    },    
+    buttonEdit: {
+        marginTop: theme.spacing(5),
+        marginLeft: theme.spacing(1),
+        color: '#fff',
+        backgroundColor: '#9cb2f0',
+        '&:hover': {
+            background: "#6581ce",
+         },
+      },
   }));
 
 function CurrentlyPlayingDetail() {
@@ -182,7 +191,10 @@ function CurrentlyPlayingDetail() {
                 </div>
                 }
                 {editMode === false &&
-                <Button variant="contained" color="secondary" fullWidth className={classes.button} onClick={handleEdit}>Edit</Button>
+                <Button variant="contained" fullWidth className={classes.buttonEdit} onClick={handleEdit}>Edit</Button>
+                }
+                {editMode &&
+                <Button variant="contained" color="primary" fullWidth fullWidth className={classes.buttonEdit} onClick={saveEdit}>Save</Button>
                 }
             </Grid>
             <Button variant="contained" color="secondary" fullWidth className={classes.button} onClick={() => {history.push('/current')}}>Back</Button>

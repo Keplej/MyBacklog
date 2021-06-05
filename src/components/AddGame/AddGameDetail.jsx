@@ -62,19 +62,18 @@ function AddGameDetail() {
         <Grid item xs={12}>
           <TextField
             required
-            id="address1"
-            name="address1"
             label="Game Name"
+            value={name}
             fullWidth
-            autoComplete="shipping address-line1"
+            onChange={(event) => setName(event.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             multiline={true}
             rows={17}
-            id="address2"
-            name="address2"
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
             label="Game Description"
             fullWidth
             autoComplete="shipping address-line2"
@@ -105,18 +104,3 @@ function AddGameDetail() {
 
 export default AddGameDetail;
 
-// {/* <select  */}
-//         value={status.id}
-//         name='status'
-//         onChange={(event) => setStatus(event.target.value)}
-//         >
-//             {getStatus.map((game) => {
-//                 return (
-//                     <option 
-//                     key={game.id} value={game.id}>{game.name}
-//                     </option>
-//                 )
-//             })}
-//         </select>
-
-{/* <MenuItem key={game.id} value={game.id>{game.name}</MenuItem></MenuItem> */}

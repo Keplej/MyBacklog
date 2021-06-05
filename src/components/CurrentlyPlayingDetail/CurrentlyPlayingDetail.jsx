@@ -85,7 +85,7 @@ function CurrentlyPlayingDetail() {
                 multiline
                 rowsMax={15}
                 variant="outlined"
-                defaultValue="Default Value"
+                // defaultValue="Default Value"
                 value={description} 
                 onChange={(event) => setDescription(event.target.value)}
                 />

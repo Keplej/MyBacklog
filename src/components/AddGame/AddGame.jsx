@@ -1,33 +1,10 @@
-import { AppBar, Button, CssBaseline, FormControl, InputLabel, Link, MenuItem, Paper, Select, Step, StepLabel, Stepper, TextField, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Button, CssBaseline, FormControl, Grid, InputLabel, Link, MenuItem, MenuList, Paper, Select, Step, StepLabel, Stepper, TextField, Toolbar, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import AddGameDetail from './AddGameDetail';
 
-
-// const useStyles = makeStyles((theme) => ({
-//     formControl: {
-//       margin: theme.spacing(1),
-//       minWidth: 120,
-//     },
-//     selectEmpty: {
-//       marginTop: theme.spacing(2),
-//     },
-//   }));
-
-function Copyright() {
-    return (
-      <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
-          Your Website
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -64,18 +41,12 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(3),
       marginLeft: theme.spacing(1),
     },
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
   }));
 
-
-
-  function getStepContent(step) {
-    switch (step) {
-      case 0:
-        return <AddGameDetail />;
-      default:
-          throw new Error('Unknown step');
-  }
-}
 
 function AddGame() {
     
@@ -86,28 +57,13 @@ function AddGame() {
     // const [url, setUrl] = useState('');
     const [status, setStatus] = useState(0);
     const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
     
     // const status = useSelector((store) => store.status);
-    const [activeStep, setActiveStep] = React.useState(0);
 
-
-
-    const addGame = useSelector(store => store.addGameReducer);
+    // const addGame = useSelector(store => store.addGameReducer);
 
     const getStatus = useSelector((store) => store.statuslistReducer);
-
-    const steps = ['Adding Game', 'Review Game'];
-
-    const handleNext = () => {
-      setActiveStep(activeStep + 1);
-    };
-  
-    const handleBack = () => {
-      setActiveStep(activeStep - 1);
-    };
-    
-    
-    
     
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -124,75 +80,85 @@ function AddGame() {
         dispatch({type: 'FETCH_STATUS'})
     }, [])
 
+    const handleClose = () => {
+      setOpen(false);
+    };
+  
+    const handleOpen = () => {
+      setOpen(true);
+    };
     
     return(
         
-    <React.Fragment>
-          <main className={classes.layout}>
+    
+      <form onSubmit={handleSubmit}>
+          <main className={classes.layout} >
             <Paper className={classes.paper}>
               <Typography component="h1" variant="h4" align="center">
-                Added Game
+                Add Game
               </Typography>
-              <Stepper  className={classes.stepper}>
-                {steps.map((label) => (
-                  <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
-                  </Step>
-                ))}
-              </Stepper>
-              <React.Fragment>
-                {activeStep === steps.length ? (
-                  <React.Fragment>
-                    <Typography variant="h5" gutterBottom>
-                      Thank you for Adding a new game
-                    </Typography>
-                    <Typography variant="subtitle1">
-                      Your order number is #2001539. We have emailed your order confirmation, and will
-                      send you an update when your order has shipped.
-                    </Typography>
-                  </React.Fragment>
-                ) : (
-                  <React.Fragment>
-                    {getStepContent(activeStep)}
-                    <div className={classes.buttons}>
-                      {activeStep !== 0 && (
-                        <Button 
-                          onClick={handleBack} 
-                          className={classes.button}>
-                          Back
-                        </Button>
-                      )}
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleNext}
-                        className={classes.button}
-                      >
-                        {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                      </Button>
-                    </div>
-                  </React.Fragment>
-                )} 
-              </React.Fragment>
+              <br />
+              <br />
+              <Typography variant="h6" gutterBottom>
+                Add a New Game
+               </Typography>
+                 <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      label="Game Name"
+                      value={name}
+                      type="text"
+                      fullWidth
+                      onChange={(event) => setName(event.target.value)}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      multiline={true}
+                      rows={17}
+                      type="text"
+                      value={description}
+                      onChange={(event) => setDescription(event.target.value)}
+                      label="Game Description"
+                      fullWidth
+                      autoComplete="shipping address-line2"
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                      <FormControl className={classes.formControl}>
+                      <InputLabel>Status</InputLabel>
+                          <Select
+                          open={open}
+                          onClose={handleClose}
+                          onOpen={handleOpen}
+                          value={status.id}
+                          name='status'
+                          onChange={(event) => setStatus(event.target.value)}
+                          >
+                          {getStatus.map((game) => {
+                          return (
+                              <MenuItem key={game.id} value={game.id}>
+                              {game.name}
+                              </MenuItem>
+                          )
+                          })}
+                          </Select>
+                      </FormControl>
+                  </Grid>
+                </Grid>
+              <Button variant="contained" color="secondary" type="submit" fullWidth className={classes.button}>Submit</Button>
             </Paper>
-            <Copyright />
           </main>
-        </React.Fragment>
+        </form>
+       
 
 
 
+         /* <form onSubmit={handleSubmit}>
+           <h3>Game Title:</h3>
+                 <TextField 
 
-
-
-
-
-
-
-
-
-        // <form onSubmit={handleSubmit}>
-        //     <h3>Game Title:</h3>
-        //         <TextField 
         //         type="text"
         //         placeholder="Game Title"
         //         value={name}
@@ -222,7 +188,7 @@ function AddGame() {
         //         </select>
         //         <br />
         //     <Button variant="contained" color="secondary" type="submit">Submit</Button>
-        // </form>
+        // </form> */
     )
 }
 

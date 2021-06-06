@@ -128,31 +128,4 @@ function Backlog() {
   )
 }
 
- {/* <Button
-                  ref={anchorRef}
-                  aria-controls={open ? 'menu-list-grow' : undefined}
-                  aria-haspopup="true"
-                  onClick={handleToggle}
-                >View</Button>
-                  <Popper open={open} 
-                    anchorEl={anchorRef.current} 
-                    role={undefined} 
-                    transition disablePortal>
-                      {({ TransitionProps, placement }) => (
-                        <Grow
-                        {...TransitionProps}
-                        style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                        >
-                        <Paper>
-                          <ClickAwayListener onClickAway={handleClose}>
-                            <MenuList>
-                              <MenuItem onClick={(event) => viewDetails(event, lists)}>Edit</MenuItem>
-                              <MenuItem value={lists.id} onClick={(event) => handleDelete(lists.id)}>Delete</MenuItem>
-                            </MenuList>
-                          </ClickAwayListener>
-                        </Paper>
-                      </Grow>
-                      )}
-                  </Popper> */}
-
 export default Backlog;

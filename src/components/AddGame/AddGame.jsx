@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import ParticleBackground from '../ParticlesConfig/ParticleBackground';
 
 
 
@@ -88,6 +89,8 @@ function AddGame() {
     };
     
     return(
+    <div>
+      <ParticleBackground />
       <form onSubmit={handleSubmit}>
           <main className={classes.layout} >
             <Paper className={classes.paper}>
@@ -156,6 +159,7 @@ function AddGame() {
             </Paper>
           </main>
        </form>
+      </div>
     )
 }
 

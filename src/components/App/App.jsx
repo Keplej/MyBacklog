@@ -24,6 +24,7 @@ import AddGame from '../AddGame/AddGame';
 import Detail from '../Detail/Detail';
 import CompletedDetail from '../CompletedDetail/CompletedDetail';
 import CurrentlyPlayingDetail from '../CurrentlyPlayingDetail/CurrentlyPlayingDetail';
+import About from '../About/About';
 
 import './App.css';
 
@@ -43,6 +44,11 @@ function App() {
           <Redirect exact from="/" to="/home" />
 
           {/* Visiting localhost:3000/about will show the about page. */}
+          <Route
+          exact
+          path="/about">
+            <About />
+          </Route>
           <ProtectedRoute
             // shows AboutPage at all times (logged in or not)
             exact

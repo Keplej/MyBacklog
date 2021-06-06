@@ -63,6 +63,7 @@ function CurrentlyPlayingDetail() {
     const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+    const [image_url, setImage_Url] = useState('');
     const [status, setStatus] = useState(0);
     const [open, setOpen] = React.useState(false);
     const history = useHistory();
@@ -78,7 +79,7 @@ function CurrentlyPlayingDetail() {
 
     const handleEdit = () => {
         setEditMode(true);
-
+        setImage_Url(list.image_url);
         setName(list.name);
         setDescription(list.description);
         setStatus(list.status);
@@ -88,6 +89,7 @@ function CurrentlyPlayingDetail() {
         const updatedCurrently = {
             id: list.id,
             name: name,
+            image_url: image_url,
             description: description,
             status: status,
         }
@@ -137,6 +139,21 @@ function CurrentlyPlayingDetail() {
                     type="text"
                     fullWidth
                     onChange={(event) => setName(event.target.value)}
+                />
+                </Grid>
+                :
+                <Grid item xs={12}>
+                {/* <Typography variant="h5" gutterBottom>Game: {list.name}</Typography> */}
+                </Grid>
+                }
+                {list && list.image_url && editMode ?
+                <Grid item xs={12}>
+                <TextField
+                    label="Game Name"
+                    value={image_url}
+                    type="text"
+                    fullWidth
+                    onChange={(event) => setImage_Url(event.target.value)}
                 />
                 </Grid>
                 :

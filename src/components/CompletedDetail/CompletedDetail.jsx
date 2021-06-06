@@ -224,18 +224,3 @@ function CompletedDetail() {
 }
 
 export default CompletedDetail;
-
-
-{/* <select 
-                value={status.id}
-                name='status'
-                onChange={(event) => setStatus(event.target.value)}
-                >
-                    {getStatus.map((game) => {
-                        return (
-                            <option 
-                            key={game.id} value={game.id}>{game.name}
-                            </option>
-                        )
-                    })}
-                </select> */}

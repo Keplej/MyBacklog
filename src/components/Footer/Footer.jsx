@@ -11,9 +11,9 @@ import Container from '@material-ui/core/Container';
 // or even care what the redux state is, so it doesn't need 'connect()'
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary">
+    <Typography variant="body2" color="text.primary">
       {'Copyright © '}
-      <Link color="inherit" href="http://localhost:3000/#/home">
+      <Link color="inherit" href="http://localhost:3000/#/about">
         My Backlog
       </Link>{' '}
       {new Date().getFullYear()}
@@ -36,8 +36,8 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     padding: theme.spacing(6, 0),
     marginTop: 'auto',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+    backgroundColor: 'transparant',
+    color: '#fff',
   },
 }));
 

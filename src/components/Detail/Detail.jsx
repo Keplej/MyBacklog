@@ -64,6 +64,7 @@ function Detail() {
     const list = useSelector(store => store.backlogDetail);
     const dispatch = useDispatch();
     const [name, setName] = useState('');
+    const [image_url, setImage_Url] = useState('');
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState(0);
     const history = useHistory();
@@ -77,8 +78,8 @@ function Detail() {
 
     const handleEdit = () => {
         setEditMode(true);
-
         setName(list.name);
+        setImage_Url(list.image_url);
         setDescription(list.description);
         setStatus(list.status);
     }
@@ -87,6 +88,7 @@ function Detail() {
         const updatedBacklog = {
             id: list.id,
             name: name,
+            image_url: image_url,
             description: description,
             status: status,
         }
@@ -141,9 +143,23 @@ function Detail() {
                 <TextField
                     label="Game Name"
                     value={name}
-                    type="text"
                     fullWidth
                     onChange={(event) => setName(event.target.value)}
+                />
+                </Grid>
+                :
+                <Grid item xs={12}>
+                {/* <Typography variant="h5" gutterBottom>Game: {list.name}</Typography> */}
+                </Grid>
+                }
+                {list && list.image_url && editMode ?
+                <Grid item xs={12}>
+                <TextField
+                    label="Game Image"
+                    value={image_url}
+                    type="text"
+                    fullWidth
+                    onChange={(event) => setImage_Url(event.target.value)}
                 />
                 </Grid>
                 :
@@ -203,7 +219,7 @@ function Detail() {
                 <Button variant="contained" color="primary" fullWidth fullWidth className={classes.buttonEdit} onClick={saveEdit}>Save</Button>
                 }
             </Grid>
-            <Button variant="contained" color="secondary" fullWidth className={classes.button} onClick={() => {history.push('/current')}}>Back</Button>
+            <Button variant="contained" color="secondary" fullWidth className={classes.button} onClick={() => {history.push('/backlog')}}>Back</Button>
         </Paper>
     </main>
     )

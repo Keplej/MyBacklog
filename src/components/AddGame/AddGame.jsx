@@ -59,10 +59,7 @@ function AddGame() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const history = useHistory();
-    
-    // const status = useSelector((store) => store.status);
 
-    // const addGame = useSelector(store => store.addGameReducer);
 
     const getStatus = useSelector((store) => store.statuslistReducer);
     
@@ -117,7 +114,6 @@ function AddGame() {
                     <TextField
                       label="Game Image"
                       value={url}
-                      // type="image"
                       fullWidth
                       onChange={(event) => setUrl(event.target.value)}
                     />
@@ -132,7 +128,6 @@ function AddGame() {
                       onChange={(event) => setDescription(event.target.value)}
                       label="Game Description"
                       fullWidth
-                      autoComplete="shipping address-line2"
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>

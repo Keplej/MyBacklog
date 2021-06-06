@@ -10,54 +10,13 @@ import './UserPageCSS.scss';
 
 
 const useStyles = makeStyles((theme) => ({
-    '@global': {
-      ul: {
-        margin: 0,
-        padding: 0,
-        listStyle: 'none',
-      },
+  buttonEdit: {
+      marginTop: theme.spacing(5),
+      marginLeft: theme.spacing(1),
+      color: '#fff',
+      fontSize: 6,
     },
-    appBar: {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-    },
-    toolbar: {
-      flexWrap: 'wrap',
-    },
-    toolbarTitle: {
-      flexGrow: 1,
-    },
-    link: {
-      margin: theme.spacing(1, 1.5),
-    },
-    heroContent: {
-      padding: theme.spacing(8, 0, 6),
-    },
-    cardHeader: {
-      backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[700],
-    },
-    cardPricing: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'baseline',
-      marginBottom: theme.spacing(2),
-    },
-    footer: {
-      borderTop: `1px solid ${theme.palette.divider}`,
-      marginTop: theme.spacing(8),
-      paddingTop: theme.spacing(3),
-      paddingBottom: theme.spacing(3),
-      [theme.breakpoints.up('sm')]: {
-        paddingTop: theme.spacing(6),
-        paddingBottom: theme.spacing(6),
-    },
-    card: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'row',
-      },
-    },
-  }));
+}));
 
 
 
@@ -95,30 +54,26 @@ function UserPageForm() {
   <ul>
     <li>
       <span class="fa fa-code"></span>
-
       <h3>Current</h3>
-      <p>Music is an art form whose medium is sound and silence. Generally, a song is considered the smallest standalone work of music, especially when involving singing. </p>
+      <p>Our current games shows us all the current games that you are currently playing.</p>
       <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <Button fullWidth variant='outlined' color="secondary" onClick={() => {history.push('/current')}}>Currently</Button>
+      <p>Click here see the current games that you are playing</p>
+      <Button className={classes.buttonEdit} fullWidth variant='outlined' color="secondary" onClick={() => {history.push('/current')}}>Currently</Button>
     </li>
     <li><span class="fa fa-music"></span>
       <h3>Backlog</h3>
-      <p>Music is an art form whose medium is sound and silence. Generally, a song is considered the smallest standalone work of music, especially when involving singing. </p>
-      <p>The common elements of music are pitch (which governs melody and harmony), rhythm (and its associated concepts tempo, meter, and articulation), dynamics, and the sonic qualities of timbre and texture.</p>
+      <p>Our backlog games shows us all the backlog games that you are planning to play.</p>
+      <br />
+      <p>Click here to the games you currently have in your backlog</p>
+      <Button className={classes.buttonEdit} fullWidth variant='outlined' color="secondary" onClick={() => {history.push('/backlog')}}>Backlog</Button>
     </li>
     <li><span class="fa fa-users"></span>
       <h3>Completed</h3>
-      <p>Music is an art form whose medium is sound and silence. Generally, a song is considered the smallest standalone work of music, especially when involving singing. </p>
-      <p>The common elements of music are pitch (which governs melody and harmony), rhythm (and its associated concepts tempo, meter, and articulation), dynamics, and the sonic qualities of timbre and texture. The word derives from Greek μουσική (mousike; "art of the Muses").</p></li>
-
+      <p>Our completed games shows us all the completed games that you finished playing.</p>
+      <br />
+      <p>Click here to see all the games you have completed</p>
+      <Button className={classes.buttonEdit} fullWidth variant='outlined' color="secondary" onClick={() => {history.push('/completed')}}>Completed</Button>
+      </li>
   </ul>
 </section>
 

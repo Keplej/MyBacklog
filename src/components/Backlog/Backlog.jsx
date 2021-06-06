@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppBar, Button, Card, CardActions, CardContent, CardMedia, Container, CssBaseline, Grid, Link, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Box, Button, Card, CardActions, CardContent, CardMedia, Container, CssBaseline, Grid, Link, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router';
-import GamesIcon from '@material-ui/icons/Games';
+import ParticleBackground from '../ParticlesConfig/ParticleBackground';
 import AddToQueueIcon from '@material-ui/icons/AddToQueue';
 
 
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
-    color: '#efefef',
+    color: '#fff',
   },
   heroContent: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: 'transparent',
+    color: '#fff',
     padding: theme.spacing(8, 0, 6),
   },
   heroButtons: {
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
   },
   AppBar: {
-    backgroundColor: '#e01616',
+    backgroundColor: 'transparent',
   },
   gamesHeader: {
     color: '#e01616',
@@ -50,51 +51,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Backlog() {
-
-
-  // const [open, setOpen] = React.useState(false);
-  // const anchorRef = React.useRef(null);
-
-  // const handleToggle = () => {
-  //   setOpen((prevOpen) => !prevOpen);
-  // };
-
-  // const handleClose = (event) => {
-  //   if (anchorRef.current && anchorRef.current.contains(event.target)) {
-  //     return;
-  //   }
-
-  //   setOpen(false);
-  // };
-
-  // function handleListKeyDown(event) {
-  //   if (event.key === 'Tab') {
-  //     event.preventDefault();
-  //     setOpen(false);
-  //   }
-  // }
-
-  // // return focus to the button when we transitioned from !open -> open
-  // const prevOpen = React.useRef(open);
-  // React.useEffect(() => {
-  //   if (prevOpen.current === true && open === false) {
-  //     anchorRef.current.focus();
-  //   }
-
-  //   prevOpen.current = open;
-  // }, [open]);
-
-
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-
-  // const handleClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
-
 
 
   const dispatch = useDispatch();
@@ -119,21 +75,23 @@ function Backlog() {
   }, []);
 
   return(
+    <div>
+      <ParticleBackground />
     <React.Fragment>
       {/* <CssBaseline /> */}
-      <AppBar position="relative" className={classes.AppBar}>
+      <AppBar position="relative" elevation={0} className={classes.AppBar}>
         <Toolbar>
           <AddToQueueIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Backlog
+          <Typography variant="h6" noWrap>
+            Backlog Games
           </Typography>
         </Toolbar>
       </AppBar>
       <main>
       <div className={classes.heroContent}>
         <Container maxWidth="sm">
-          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            Backlog Games
+          <Typography component="h1" variant="h2" align="center" color="white" fontWeight="fontWeightBold" gutterBottom>
+            <Box fontWeight="fontWeightBold" letterSpacing={2} m={1}>Backlog</Box>
           </Typography>
         </Container>
       </div>
@@ -166,6 +124,7 @@ function Backlog() {
       </Container>
     </main>
     </React.Fragment>
+    </div>
   )
 }
 

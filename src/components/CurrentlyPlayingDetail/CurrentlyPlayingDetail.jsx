@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
+import ParticleBackground from '../ParticlesConfig/ParticleBackground';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -120,6 +121,8 @@ function CurrentlyPlayingDetail() {
       };
 
     return (
+      <div>
+        <ParticleBackground />
         <main className={classes.layout} >
         <Paper className={classes.paper}>
         <CardMedia  image={list.image_url} className={classes.cardMedia} />
@@ -216,6 +219,7 @@ function CurrentlyPlayingDetail() {
             <Button variant="contained" color="secondary" fullWidth className={classes.button} onClick={() => {history.push('/current')}}>Back</Button>
         </Paper>
         </main>
+      </div>
     )
 }
 

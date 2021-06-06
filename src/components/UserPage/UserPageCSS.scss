@@ -1,9 +1,9 @@
-$font-color: #A2A2A2;
-$primary-color: #e01616;
+$font-color: #fff;
+$primary-color: #fff;
 #sec {
   font-family: 'Raleway', sans-serif;
   padding: 50px 0;
-  background: #fff;
+  background: #FF000000;
   text-align: center;
   word-wrap:break-word;
 
@@ -32,7 +32,7 @@ $primary-color: #e01616;
         color: $primary-color;
       }
       &:hover p {
-        color: #555;
+        color: #fff;
       }
       &:hover h3 {
         color: $primary-color;

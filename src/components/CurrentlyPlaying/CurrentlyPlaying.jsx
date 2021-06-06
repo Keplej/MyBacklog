@@ -78,7 +78,7 @@ dispatch({type: 'FETCH_CURRENT'});
     <div>
       <ParticleBackground />
     <React.Fragment>
-      <AppBar position="relative" className={classes.AppBar}>
+      <AppBar position="relative" elevation={0} className={classes.AppBar}>
         <Toolbar>
           <GamesIcon className={classes.icon} />
           <Typography variant="h6" noWrap>
@@ -89,8 +89,8 @@ dispatch({type: 'FETCH_CURRENT'});
       <main>
       <div className={classes.heroContent}>
         <Container maxWidth="sm">
-          <Typography component="h1" variant="h2" align="center" fontWeight="fontWeightBold"  letterSpacing={10} gutterBottom>
-            <Box fontWeight="fontWeightBold" m={1}>Currently Playing </Box>
+          <Typography component="h1" variant="h2" align="center" fontWeight="fontWeightBold" gutterBottom>
+            <Box fontWeight="fontWeightBold" letterSpacing={1} m={1}>Currently Playing </Box>
           </Typography>
         </Container>
       </div>

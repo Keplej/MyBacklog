@@ -4,25 +4,31 @@ import {useSelector} from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { Avatar, Button, Container, CssBaseline, Grid, TextField } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Box from '@material-ui/core/Box';
-
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="http://localhost:3000/#/home">
-        My Backlog
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import ParticleBackground from '../ParticlesConfig/ParticleBackground';
+const theme = createMuiTheme({
+  overrides: {
+    MuiFilledInput: {
+      root: {
+        backgroundColor: 'transparent',
+        color: 'white',
+        '&:hover': {
+          backgroundColor: 'fff'
+        },
+        '&.Mui-focused': {
+          backgroundColor: 'fff'
+        }
+      }
+    }
+  }
+});
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    color: 'white',
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -39,6 +45,33 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  textField: {
+    input: 'white',
+  },
+  palette: {
+    type: 'dark',
+  },
+  cssLabel: {
+    color: "#fff",
+    "&.Mui-focused": {
+      color: "#fff"
+    },
+    cssOutlinedInput: {
+      "&:not(hover):not($disabled):not($cssFocused):not($error) $notchedOutline": {
+        borderColor: "#fff" //default
+      },
+      "&:hover:not($disabled):not($cssFocused):not($error) $notchedOutline": {
+        borderColor: "#fff" //hovered #DCDCDC
+      },
+      "&$cssFocused $notchedOutline": {
+        borderColor: "#fff" //focused
+      }
+    },
+    notchedOutline: {},
+    cssFocused: {},
+    error: {},
+    disabled: {}
   },
 }));
 
@@ -68,13 +101,18 @@ function LoginForm() {
   }; // end login
 
   return (
+    <div>
+      <ParticleBackground />
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <div className={classes.paper}>
+        {/* <ThemeProvider theme={theme}>
+          <TextField variant="filled"/>
+        </ThemeProvider> */}
         <Avatar>
           <LockOpenIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography className={classes.root} component="h1" variant="h5">
           Sign in
         </Typography>
         <form 
@@ -86,8 +124,10 @@ function LoginForm() {
           {errors.loginMessage}
         </h3>
       )}
+      <ThemeProvider theme={theme}>
           <TextField
-            variant="outlined"
+            className={classes.cssLabel}
+            variant="filled"
             margin="normal"
             fullWidth
             type="text"
@@ -98,11 +138,27 @@ function LoginForm() {
             autoFocus
             value={username}
             onChange={(event) => setUsername(event.target.value)}
+            InputLabelProps={{
+              classes: {
+                root: classes.cssLabel,
+                focused: classes.cssFocused
+              }
+            }}
+            InputProps={{
+              classes: {
+                root: classes.cssOutlinedInput,
+                focused: classes.cssFocused,
+                notchedOutline: classes.notchedOutline
+              },
+              inputMode: "numeric"
+            }}
           />
+          
           <TextField
+            className={classes.cssLabel}
             type="password"
             name="password"
-            variant="outlined"
+            variant="filled"
             margin="normal"
             label="Password"
             id="password"
@@ -110,7 +166,22 @@ function LoginForm() {
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
+            InputLabelProps={{
+              classes: {
+                root: classes.cssLabel,
+                focused: classes.cssFocused
+              }
+            }}
+            InputProps={{
+              classes: {
+                root: classes.cssOutlinedInput,
+                focused: classes.cssFocused,
+                notchedOutline: classes.notchedOutline
+              },
+              inputMode: "numeric"
+            }}
           />
+          </ThemeProvider>
           <Button
             type="submit"
             name="submit"
@@ -122,25 +193,22 @@ function LoginForm() {
           >
             Sign In
           </Button>
-          
           <Grid container>
           <Grid item xs>
-                <Link href="http://localhost:3000/#/home" variant="body2">
+                <Link href="http://localhost:3000/#/home" variant="body2" className={classes.root}>
                   Back Home
                 </Link>
               </Grid>
             <Grid item>
-              <Link href="http://localhost:3000/#/registration" variant="body2">
+              <Link href="http://localhost:3000/#/registration" variant="body2" className={classes.root}>
                 {"Don't have an account? Sign up"}
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
+    </div>
   );
 }
 

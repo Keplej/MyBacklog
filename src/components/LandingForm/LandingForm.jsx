@@ -7,7 +7,7 @@ import Link from '@material-ui/core/Link';
 import Box from '@material-ui/core/Box';
 import { useHistory } from 'react-router';
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
-
+import ParticleBackground from '../ParticlesConfig/ParticleBackground';
 
 
 
@@ -28,14 +28,6 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
-  },
-  image: {
-    backgroundImage: 'url(https://wallpapercave.com/wp/wp2841763.jpg)',
-    backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -73,11 +65,13 @@ function LandingForm() {
 
 
   return (
+    <div>
+      <ParticleBackground />
     <Grid container component="main" 
-    className={classes.root} >
+    className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square className={classes.paperColor}>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <SportsEsportsIcon />
@@ -114,6 +108,7 @@ function LandingForm() {
         </div>
       </Grid>
     </Grid>
+    </div>
   );
 }
 

@@ -152,7 +152,7 @@ function CompletedDetail() {
                 {list && list.image_url && editMode ?
                 <Grid item xs={12}>
                 <TextField
-                    label="Game Name"
+                    label="Game Image"
                     value={image_url}
                     type="text"
                     fullWidth

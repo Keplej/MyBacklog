@@ -45,6 +45,12 @@ const useStyles = makeStyles((theme) => ({
   gamesHeader: {
     color: '#e01616',
   },
+  button: {
+    backgroundColor: '#E95252',
+      '&:hover': {
+        background: "#D52F2F",
+     },
+  },
 }));
 
 function CurrentlyPlaying() {

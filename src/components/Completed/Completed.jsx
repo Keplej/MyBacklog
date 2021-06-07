@@ -89,7 +89,7 @@ function Completed() {
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography component="h1" variant="h2" align="center" color="white" fontWeight="fontWeightBold" gutterBottom>
-              <Box fontWeight="fontWeightBold" letterSpacing={1} m={1}>Currently Playing </Box>
+              <Box fontWeight="fontWeightBold" letterSpacing={1} m={1}>Completed </Box>
             </Typography>
           </Container>
         </div>

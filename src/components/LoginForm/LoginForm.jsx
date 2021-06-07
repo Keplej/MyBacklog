@@ -45,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#E95252',
+      '&:hover': {
+        background: "#D52F2F",
+     },
   },
   textField: {
     input: 'white',
@@ -106,9 +110,6 @@ function LoginForm() {
     <Container component="main" maxWidth="xs">
       {/* <CssBaseline /> */}
       <div className={classes.paper}>
-        {/* <ThemeProvider theme={theme}>
-          <TextField variant="filled"/>
-        </ThemeProvider> */}
         <Avatar>
           <LockOpenIcon />
         </Avatar>

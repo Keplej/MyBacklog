@@ -52,18 +52,19 @@ function Completed() {
 
 
       const dispatch = useDispatch();
+      //This gets our data for the completed list
       const list = useSelector(store => store.completedlistReducer);
       const history = useHistory();
 
-      
+      // Material UI compoment 
       const classes = useStyles();
-
+      
       const viewDetails = (event, lists) => {
         console.log('Clicked on detail', lists);
         history.push(`/completeddetail/${lists.id}`);
       }
 
-
+      // This is a delete function to delete a game on the completed list
     function handleDelete(id) {
       dispatch({type: 'DELETE_COMPLETED', payload: id})
     }

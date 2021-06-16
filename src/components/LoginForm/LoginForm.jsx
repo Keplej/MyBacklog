@@ -8,6 +8,8 @@ import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/sty
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Box from '@material-ui/core/Box';
 import ParticleBackground from '../ParticlesConfig/ParticleBackground';
+
+
 const theme = createMuiTheme({
   overrides: {
     MuiFilledInput: {

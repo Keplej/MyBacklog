@@ -53,6 +53,7 @@ function AddGame() {
     
     const dispatch = useDispatch();
 
+    //This is what we are using for our useStates to add a new game
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [url, setUrl] = useState('');
@@ -61,9 +62,10 @@ function AddGame() {
     const [open, setOpen] = React.useState(false);
     const history = useHistory();
 
-
+    //This stores the new status of the game
     const getStatus = useSelector((store) => store.statuslistReducer);
     
+    //This submits on submit for the new item when finished adding a new item
     const handleSubmit = (event) => {
         event.preventDefault();
         const addingGame = {

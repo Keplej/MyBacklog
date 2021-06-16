@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
       },
   }));
 function CompletedDetail() {
-
+    // Gets the game data of that specific game
     const list = useSelector(store => store.completedDetailReducer);
     const dispatch = useDispatch();
     const [name, setName] = useState('');
@@ -70,7 +70,7 @@ function CompletedDetail() {
     const [open, setOpen] = React.useState(false);
 
 
-
+    // This gets us the status of the game, it also allows us to change the status of the game
     const getStatus = useSelector((store) => store.statuslistReducer);
 
     const classes = useStyles();
@@ -85,7 +85,7 @@ function CompletedDetail() {
         setDescription(list.description);
         setStatus(list.status);
     }
-
+    // This saves the new edit with all the data you change when editing
     const saveEdit = () => {
         const updatedCompleted = {
             id: list.id,
@@ -101,7 +101,7 @@ function CompletedDetail() {
         setEditMode(false)
         history.push('/completed');
     }
-
+    //this sets a new id for a game that is added
     const {id} = useParams(); 
     
 
@@ -146,7 +146,6 @@ function CompletedDetail() {
                 </Grid>
                 :
                 <Grid item xs={12}>
-                {/* <Typography variant="h5" gutterBottom>Game: {list.name}</Typography> */}
                 </Grid>
                 }
                 {list && list.image_url && editMode ?
@@ -174,7 +173,6 @@ function CompletedDetail() {
                     onChange={(event) => setDescription(event.target.value)}
                     label="Game Description"
                     fullWidth
-                    autoComplete="shipping address-line2"
                 />
                 </Grid>
                 :
@@ -216,7 +214,7 @@ function CompletedDetail() {
                 <Button variant="contained" color="primary" fullWidth fullWidth className={classes.buttonEdit} onClick={saveEdit}>Save</Button>
                 }
             </Grid>
-            <Button variant="contained" color="secondary" fullWidth className={classes.button} onClick={() => {history.push('/current')}}>Back</Button>
+            <Button variant="contained" color="secondary" fullWidth className={classes.button} onClick={() => {history.push('/completed')}}>Back</Button>
         </Paper>
         </main>
       </div>

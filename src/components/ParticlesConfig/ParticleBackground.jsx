@@ -1,7 +1,7 @@
 import React from 'react';
 import Particles from 'react-particles-js';
 import './Add.css';
-
+// This is where we store the information for the particle background
 function ParticleBackground() {
   return (
 <div id="particles">

@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Detail() {
-
+    // Gets our data from the list of games
     const list = useSelector(store => store.backlogDetail);
     const dispatch = useDispatch();
     const [name, setName] = useState('');
@@ -71,7 +71,7 @@ function Detail() {
     const [open, setOpen] = React.useState(false);
 
     const classes = useStyles();
-    
+    // Gets our status from the reducer
     const getStatus = useSelector((store) => store.statuslistReducer);
 
     const [editMode, setEditMode] = useState(false);
@@ -83,7 +83,7 @@ function Detail() {
         setDescription(list.description);
         setStatus(list.status);
     }
-
+    // This saves our edit of the game when editing
     const saveEdit = () => {
         const updatedBacklog = {
             id: list.id,
@@ -94,7 +94,6 @@ function Detail() {
         }
         console.log('updated backlog detail:', updatedBacklog);
         dispatch({type: 'UPDATE_BACKLOG', payload: updatedBacklog});
-        // dispatch({type: '', payload: updatedBacklog});
 
         setEditMode(false)
         history.push('/backlog');
@@ -109,7 +108,7 @@ function Detail() {
         console.log('In ueseEffect param:', id);
         dispatch({type: 'FETCH_BACKLOG_DETAIL', payload: id})
     }, [])
-
+    // Gets our data from the sagas and reducers
     useEffect(() => {
         console.log('In ueseEffect param:', id);
         dispatch({type: 'FETCH_BACKLOG_DETAIL', payload: id})
@@ -137,7 +136,7 @@ function Detail() {
             {list.name}
             </Typography>
             <Typography variant="h6" gutterBottom>
-            {/* Edit {list.name} */}
+
             </Typography>
             <Grid container spacing={3}>
             {list && list.name && editMode ?
@@ -151,7 +150,7 @@ function Detail() {
                 </Grid>
                 :
                 <Grid item xs={12}>
-                {/* <Typography variant="h5" gutterBottom>Game: {list.name}</Typography> */}
+
                 </Grid>
                 }
                 {list && list.image_url && editMode ?
@@ -166,7 +165,7 @@ function Detail() {
                 </Grid>
                 :
                 <Grid item xs={12}>
-                {/* <Typography variant="h5" gutterBottom>Game: {list.name}</Typography> */}
+
                 </Grid>
                 }
                 {list && list.description && editMode ?
@@ -211,7 +210,7 @@ function Detail() {
                 </Grid>
                 :
                 <div>
-                    {/* <span>{list.status}</span> */}
+
                 </div>
                 }
                 {editMode === false &&

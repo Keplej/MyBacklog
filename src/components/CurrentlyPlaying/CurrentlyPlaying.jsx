@@ -58,9 +58,10 @@ function CurrentlyPlaying() {
 
   
   const dispatch = useDispatch();
+  //Gets our currentlist from the reducer so it will show up on the DOM
   const list = useSelector(store => store.currentlistReducer);
   const history = useHistory();
-  // const user = useSelector(store => store.user);
+  
   
   const classes = useStyles();
 

@@ -71,13 +71,13 @@ function CurrentlyPlayingDetail() {
     const classes = useStyles();
 
     
-    // const classes = useStyles();
+  // Gets our status from the reducer
     const getStatus = useSelector((store) => store.statuslistReducer);
 
     
 
     const [editMode, setEditMode] = useState(false);
-
+  // This allows us to edit the game
     const handleEdit = () => {
         setEditMode(true);
         setImage_Url(list.image_url);
@@ -101,10 +101,10 @@ function CurrentlyPlayingDetail() {
         setEditMode(false)
         history.push('/current');
     }
-
+    //This gets the id of the game
     const {id} = useParams(); 
     
-
+    // This is where we are able to get the current detail of the game and the status
     useEffect(() => {
         console.log('In ueseEffect param:', id);
         dispatch({type: 'FETCH_CURRENT_DETAIL', payload: id})
@@ -131,7 +131,6 @@ function CurrentlyPlayingDetail() {
             {list.name}
             </Typography>
             <Typography variant="h6" gutterBottom>
-            {/* Edit {list.name} */}
             </Typography>
             <Grid container spacing={3}>
             {list && list.name && editMode ?
@@ -146,7 +145,7 @@ function CurrentlyPlayingDetail() {
                 </Grid>
                 :
                 <Grid item xs={12}>
-                {/* <Typography variant="h5" gutterBottom>Game: {list.name}</Typography> */}
+
                 </Grid>
                 }
                 {list && list.image_url && editMode ?

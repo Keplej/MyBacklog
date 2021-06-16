@@ -8,7 +8,7 @@ _Duration: 2 Week Sprint_
 MyBacklog is a responsive web application. The design is meant for desktop only. This application allows the user to
 keep a backlog of games. There are three different sections to keep games, the three different sections are Currently playing, Backlog, and Completed. The user can edit or delete any game on each list. Deleting the game will delete the game from the database and the edit will allow the user to edit the game name, details, image, and status of the game. There is an add feature that allows the user to add a new game. 
 
-To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.heroku.com)
+To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](https://sheltered-basin-25670.herokuapp.com/#/home)
 
 ## Screen Shot
 ![home](public/images/home.png)
